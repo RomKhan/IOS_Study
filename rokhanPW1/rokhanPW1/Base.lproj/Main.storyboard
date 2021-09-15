@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -16,107 +17,126 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c9i-At-dEF">
-                                <rect key="frame" x="184" y="773" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
-                                <color key="tintColor" systemColor="secondarySystemGroupedBackgroundColor"/>
-                                <state key="normal" title="Button"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1p8-Iw-a9n">
+                                <rect key="frame" x="59" y="817" width="130" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Color">
+                                    <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                </state>
                                 <connections>
-                                    <action selector="changeColorButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zmr-zn-atK"/>
+                                    <action selector="changeColorButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xga-Vt-KVX"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gcf-L1-4PB">
-                                <rect key="frame" x="173" y="287" width="69" height="86"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hA-tS-Flc">
+                                <rect key="frame" x="226" y="817" width="130" height="45"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Position">
+                                    <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="ChangePositionButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fpW-hH-Kgl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qH6-bi-HgC">
+                                <rect key="frame" x="59" y="764" width="297" height="45"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Push me!">
+                                    <color key="titleColor" systemColor="secondarySystemBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="ColorAndPositionChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QvC-eN-fCQ"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i3k-C2-MwN">
+                                <rect key="frame" x="-37" y="573" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OF1-yQ-AQ2">
-                                <rect key="frame" x="208" y="439" width="186" height="35"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zR-4x-XL1">
+                                <rect key="frame" x="293" y="612" width="130" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ODD-g6-sed">
-                                <rect key="frame" x="58" y="102" width="240" height="128"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-Z5-myC">
+                                <rect key="frame" x="226" y="433" width="130" height="151"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OdX-te-HV7">
-                                <rect key="frame" x="20" y="482" width="141" height="64"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fmq-U8-mp7">
+                                <rect key="frame" x="-73" y="-10" width="130" height="151"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="96u-h9-Osp">
-                                <rect key="frame" x="181" y="491" width="61" height="146"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="clk-xG-akg">
+                                <rect key="frame" x="356" y="351" width="130" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Xe-i2-ijE">
-                                <rect key="frame" x="-21" y="671" width="130" height="101"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pbs-u6-NHz">
+                                <rect key="frame" x="-55" y="289" width="175" height="188"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="15"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MuH-li-0Fb">
-                                <rect key="frame" x="302" y="266" width="198" height="128"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FEY-wq-8Th">
+                                <rect key="frame" x="95" y="0.0" width="175" height="103"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YvV-a7-Hy4">
-                                <rect key="frame" x="20" y="282" width="89" height="128"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LjZ-Dm-xYc">
+                                <rect key="frame" x="79" y="202" width="124" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="awm-OW-aEq">
-                                <rect key="frame" x="336" y="-10" width="109" height="160"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bBi-ou-gtI">
+                                <rect key="frame" x="244" y="160" width="124" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WvV-Rk-k1D">
-                                <rect key="frame" x="285" y="576" width="109" height="106"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAj-iM-nPp">
+                                <rect key="frame" x="149" y="351" width="40" height="151"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <connections>
-                        <outlet property="button" destination="c9i-At-dEF" id="QyC-fR-gJw"/>
-                        <outletCollection property="views" destination="Gcf-L1-4PB" collectionClass="NSMutableArray" id="oU8-7c-A8w"/>
-                        <outletCollection property="views" destination="ODD-g6-sed" collectionClass="NSMutableArray" id="LWd-Mt-8ib"/>
-                        <outletCollection property="views" destination="awm-OW-aEq" collectionClass="NSMutableArray" id="9UT-fN-9cB"/>
-                        <outletCollection property="views" destination="MuH-li-0Fb" collectionClass="NSMutableArray" id="FpN-Zo-FGg"/>
-                        <outletCollection property="views" destination="Gcf-L1-4PB" collectionClass="NSMutableArray" id="0sO-kh-uSz"/>
-                        <outletCollection property="views" destination="YvV-a7-Hy4" collectionClass="NSMutableArray" id="bhf-xJ-2se"/>
-                        <outletCollection property="views" destination="OF1-yQ-AQ2" collectionClass="NSMutableArray" id="Gph-zQ-wbe"/>
-                        <outletCollection property="views" destination="OdX-te-HV7" collectionClass="NSMutableArray" id="fE5-Li-hDf"/>
-                        <outletCollection property="views" destination="96u-h9-Osp" collectionClass="NSMutableArray" id="xmQ-aQ-kSQ"/>
-                        <outletCollection property="views" destination="WvV-Rk-k1D" collectionClass="NSMutableArray" id="vcE-ye-PzL"/>
-                        <outletCollection property="views" destination="7Xe-i2-ijE" collectionClass="NSMutableArray" id="tfP-Nr-QTc"/>
+                        <outlet property="buttonColor" destination="1p8-Iw-a9n" id="Wo6-Cy-6Fb"/>
+                        <outlet property="buttonColorAndPosition" destination="qH6-bi-HgC" id="Uoj-UB-AYB"/>
+                        <outlet property="buttonPosition" destination="8hA-tS-Flc" id="KXO-c3-aLT"/>
+                        <outletCollection property="views" destination="clk-xG-akg" collectionClass="NSMutableArray" id="KI1-Ew-1gg"/>
+                        <outletCollection property="views" destination="R3Y-Z5-myC" collectionClass="NSMutableArray" id="FaL-G3-YQ9"/>
+                        <outletCollection property="views" destination="4zR-4x-XL1" collectionClass="NSMutableArray" id="exV-Md-HaM"/>
+                        <outletCollection property="views" destination="i3k-C2-MwN" collectionClass="NSMutableArray" id="LSF-yx-keb"/>
+                        <outletCollection property="views" destination="ZAj-iM-nPp" collectionClass="NSMutableArray" id="boW-R3-q84"/>
+                        <outletCollection property="views" destination="Pbs-u6-NHz" collectionClass="NSMutableArray" id="nF1-rK-tkb"/>
+                        <outletCollection property="views" destination="LjZ-Dm-xYc" collectionClass="NSMutableArray" id="wGk-fn-8Xe"/>
+                        <outletCollection property="views" destination="bBi-ou-gtI" collectionClass="NSMutableArray" id="Yv7-on-3YU"/>
+                        <outletCollection property="views" destination="FEY-wq-8Th" collectionClass="NSMutableArray" id="KId-PY-qmf"/>
+                        <outletCollection property="views" destination="Fmq-U8-mp7" collectionClass="NSMutableArray" id="dXZ-98-YF6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="28.985507246376812" y="70.982142857142847"/>
+            <point key="canvasLocation" x="18.840579710144929" y="75.669642857142847"/>
         </scene>
     </scenes>
     <resources>
-        <systemColor name="secondarySystemGroupedBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
