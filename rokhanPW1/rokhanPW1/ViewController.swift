@@ -61,11 +61,10 @@ class ViewController: UIViewController {
             var height: CGFloat!
             
             repeat {
-                let size = Int.random(in: 40...200)
                 xAxis = CGFloat(arc4random_uniform(UInt32(self.view.frame.width-50)))
                 yAxis = CGFloat(arc4random_uniform(UInt32(self.view.frame.height-100)))
-                width = CGFloat(size)
-                height = CGFloat(size)
+                width = CGFloat(Int.random(in: 40...200))
+                height = CGFloat(Int.random(in: 40...200))
                 
                 var flagOfCorrectSelection = true
                 for area in usedAreas {
