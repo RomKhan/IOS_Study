@@ -29,9 +29,8 @@
                                     <action selector="changeColorButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Xga-Vt-KVX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hA-tS-Flc">
-                                <rect key="frame" x="226" y="817" width="130" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8hA-tS-Flc">
+                                <rect key="frame" x="226" y="817" width="86" height="45"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Position">
@@ -41,9 +40,8 @@
                                     <action selector="ChangePositionButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fpW-hH-Kgl"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qH6-bi-HgC">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qH6-bi-HgC">
                                 <rect key="frame" x="59" y="764" width="297" height="45"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Push me!">
@@ -53,19 +51,16 @@
                                     <action selector="ColorAndPositionChange:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QvC-eN-fCQ"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i3k-C2-MwN">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i3k-C2-MwN">
                                 <rect key="frame" x="-37" y="573" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zR-4x-XL1">
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4zR-4x-XL1">
                                 <rect key="frame" x="293" y="612" width="130" height="102"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-Z5-myC">
-                                <rect key="frame" x="226" y="433" width="130" height="151"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R3Y-Z5-myC">
+                                <rect key="frame" x="226" y="433" width="128" height="129"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                             </view>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fmq-U8-mp7">
@@ -106,6 +101,17 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="R3Y-Z5-myC" firstAttribute="trailing" secondItem="qH6-bi-HgC" secondAttribute="trailing" id="61l-cD-WB8"/>
+                            <constraint firstItem="R3Y-Z5-myC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="226" id="DWI-wl-YLa"/>
+                            <constraint firstItem="4zR-4x-XL1" firstAttribute="top" relation="lessThanOrEqual" secondItem="R3Y-Z5-myC" secondAttribute="bottom" constant="50" id="OrB-2w-97l"/>
+                            <constraint firstAttribute="bottom" secondItem="R3Y-Z5-myC" secondAttribute="bottom" constant="334" id="eyh-XO-uRk"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="R3Y-Z5-myC" secondAttribute="trailing" constant="60" id="ibh-Za-Ft8"/>
+                            <constraint firstItem="R3Y-Z5-myC" firstAttribute="trailing" secondItem="8hA-tS-Flc" secondAttribute="trailing" constant="42" id="k6j-Ha-zTG"/>
+                            <constraint firstItem="R3Y-Z5-myC" firstAttribute="leading" secondItem="i3k-C2-MwN" secondAttribute="trailing" constant="23" id="pz1-o9-6Md"/>
+                            <constraint firstItem="R3Y-Z5-myC" firstAttribute="leading" secondItem="8hA-tS-Flc" secondAttribute="leading" id="uPO-vh-ffd"/>
+                            <constraint firstItem="R3Y-Z5-myC" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="433" id="yNt-m7-Nub"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="buttonColor" destination="1p8-Iw-a9n" id="Wo6-Cy-6Fb"/>
