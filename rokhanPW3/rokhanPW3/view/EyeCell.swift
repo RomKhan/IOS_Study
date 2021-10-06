@@ -8,6 +8,15 @@
 import UIKit
 
 final class EyeCell : UITableViewCell {
+    
+    override func prepareForReuse() {
+        for subview in subviews {
+            if subview is UIImageView {
+                subview.removeFromSuperview()
+            }
+        }
+    }
+    
     func setupEye() {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: 50).isActive = true

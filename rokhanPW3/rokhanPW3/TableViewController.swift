@@ -1,18 +1,28 @@
 import UIKit
 
 class TableViewController: UIViewController {
+    
     private var table: UITableView!
+    private var alarms: [AlarmModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
         setupTableView()
+        
+        for _ in 0...200 {
+            alarms.append(AlarmModel(
+                            hours: Int.random(in: 0...23),
+                            minutes: Int.random(in: 0...59),
+                            isActive: Bool.random()))
+        }
     }
     
     private func setupTableView() {
         let table = UITableView()
         view.addSubview(table)
         
-        table.register(EyeCell.self, forCellReuseIdentifier: "eyeCell")
+        table.register(AlarmCell.self, forCellReuseIdentifier: "alarmCell")
         table.delegate = self
         table.dataSource = self
         
@@ -28,7 +38,7 @@ class TableViewController: UIViewController {
 
 extension TableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 300
+        return alarms.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -39,8 +49,12 @@ extension TableViewController: UITableViewDelegate {
 extension TableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "eyeCell", for: indexPath) as? EyeCell
-        cell?.setupEye()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell", for: indexPath) as? AlarmCell
+        if (cell?.view == nil) {
+            cell?.setupAlarm()
+        }
+        let model = alarms[indexPath.row]
+        cell?.view.alarmViewUpdate(hours: model.hours, minutes: model.minutes, isActive: model.isActive)
         return cell ?? UITableViewCell()
     }
 }

@@ -7,8 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		153683F0270E08710088DBF1 /* AlarmMenadgerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153683EF270E08710088DBF1 /* AlarmMenadgerProtocol.swift */; };
+		153683F3270E0B660088DBF1 /* StackPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153683F2270E0B660088DBF1 /* StackPresenter.swift */; };
+		153683F5270E0C5E0088DBF1 /* InteractorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153683F4270E0C5E0088DBF1 /* InteractorProtocol.swift */; };
 		154A29FB270CBEC3006F26EA /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A29FA270CBEC3006F26EA /* AlarmView.swift */; };
 		154A29FD270D0E5E006F26EA /* EyeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A29FC270D0E5E006F26EA /* EyeCell.swift */; };
+		154A29FF270D46E5006F26EA /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A29FE270D46E5006F26EA /* AlarmCell.swift */; };
+		154A2A01270D4819006F26EA /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A2A00270D4819006F26EA /* AlarmModel.swift */; };
 		15655EAB270BC62300266052 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15655EAA270BC62300266052 /* AppDelegate.swift */; };
 		15655EAD270BC62300266052 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15655EAC270BC62300266052 /* SceneDelegate.swift */; };
 		15655EB4270BC62400266052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15655EB3270BC62400266052 /* Assets.xcassets */; };
@@ -19,8 +24,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		153683EF270E08710088DBF1 /* AlarmMenadgerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmMenadgerProtocol.swift; sourceTree = "<group>"; };
+		153683F2270E0B660088DBF1 /* StackPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackPresenter.swift; sourceTree = "<group>"; };
+		153683F4270E0C5E0088DBF1 /* InteractorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractorProtocol.swift; sourceTree = "<group>"; };
 		154A29FA270CBEC3006F26EA /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		154A29FC270D0E5E006F26EA /* EyeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeCell.swift; sourceTree = "<group>"; };
+		154A29FE270D46E5006F26EA /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
+		154A2A00270D4819006F26EA /* AlarmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
 		15655EA7270BC62300266052 /* rokhanPW3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rokhanPW3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15655EAA270BC62300266052 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15655EAC270BC62300266052 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,11 +53,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		153683F1270E0AE70088DBF1 /* Stack */ = {
+			isa = PBXGroup;
+			children = (
+				15655EBE270BCAE100266052 /* StackViewController.swift */,
+				153683F2270E0B660088DBF1 /* StackPresenter.swift */,
+			);
+			path = Stack;
+			sourceTree = "<group>";
+		};
 		154A29F9270CBE9F006F26EA /* view */ = {
 			isa = PBXGroup;
 			children = (
 				154A29FA270CBEC3006F26EA /* AlarmView.swift */,
 				154A29FC270D0E5E006F26EA /* EyeCell.swift */,
+				154A29FE270D46E5006F26EA /* AlarmCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -71,8 +91,10 @@
 		15655EA9270BC62300266052 /* rokhanPW3 */ = {
 			isa = PBXGroup;
 			children = (
+				154A2A00270D4819006F26EA /* AlarmModel.swift */,
+				153683EF270E08710088DBF1 /* AlarmMenadgerProtocol.swift */,
 				154A29F9270CBE9F006F26EA /* view */,
-				15655EBE270BCAE100266052 /* StackViewController.swift */,
+				153683F1270E0AE70088DBF1 /* Stack */,
 				15655EAA270BC62300266052 /* AppDelegate.swift */,
 				15655EAC270BC62300266052 /* SceneDelegate.swift */,
 				15655EB3270BC62400266052 /* Assets.xcassets */,
@@ -80,6 +102,7 @@
 				15655EB8270BC62400266052 /* Info.plist */,
 				15655EC0270BCAFB00266052 /* TableViewController.swift */,
 				15655EC2270BCB0700266052 /* CollectionViewController.swift */,
+				153683F4270E0C5E0088DBF1 /* InteractorProtocol.swift */,
 			);
 			path = rokhanPW3;
 			sourceTree = "<group>";
@@ -157,9 +180,14 @@
 				15655EAB270BC62300266052 /* AppDelegate.swift in Sources */,
 				15655EAD270BC62300266052 /* SceneDelegate.swift in Sources */,
 				15655EC1270BCAFB00266052 /* TableViewController.swift in Sources */,
+				153683F0270E08710088DBF1 /* AlarmMenadgerProtocol.swift in Sources */,
 				154A29FB270CBEC3006F26EA /* AlarmView.swift in Sources */,
+				154A2A01270D4819006F26EA /* AlarmModel.swift in Sources */,
 				154A29FD270D0E5E006F26EA /* EyeCell.swift in Sources */,
+				153683F5270E0C5E0088DBF1 /* InteractorProtocol.swift in Sources */,
 				15655EC3270BCB0700266052 /* CollectionViewController.swift in Sources */,
+				154A29FF270D46E5006F26EA /* AlarmCell.swift in Sources */,
+				153683F3270E0B660088DBF1 /* StackPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

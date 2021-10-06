@@ -3,6 +3,7 @@ import UIKit
 class AlarmView : UIView {
     private var alarmTime: UILabel!
     private var toggle: UISwitch!
+//    private var menadger: AlarmMenadgerProtocol!
     
     convenience init(_ alarmHour: Int = 19, _ alarmMinutes: Int = 20, _ isActive: Bool = true) {
         self.init()
@@ -31,5 +32,10 @@ class AlarmView : UIView {
         toggle.translatesAutoresizingMaskIntoConstraints = false
         toggle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         toggle.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+    
+    func alarmViewUpdate(hours: Int, minutes: Int, isActive: Bool) {
+        alarmTime.text = "\(hours):\(minutes)"
+        toggle.isOn = isActive
     }
 }
