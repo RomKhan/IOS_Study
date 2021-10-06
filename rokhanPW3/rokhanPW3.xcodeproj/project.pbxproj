@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		154A29FB270CBEC3006F26EA /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A29FA270CBEC3006F26EA /* AlarmView.swift */; };
+		154A29FD270D0E5E006F26EA /* EyeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A29FC270D0E5E006F26EA /* EyeCell.swift */; };
 		15655EAB270BC62300266052 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15655EAA270BC62300266052 /* AppDelegate.swift */; };
 		15655EAD270BC62300266052 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15655EAC270BC62300266052 /* SceneDelegate.swift */; };
 		15655EB4270BC62400266052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15655EB3270BC62400266052 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		154A29FA270CBEC3006F26EA /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
+		154A29FC270D0E5E006F26EA /* EyeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeCell.swift; sourceTree = "<group>"; };
 		15655EA7270BC62300266052 /* rokhanPW3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rokhanPW3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15655EAA270BC62300266052 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15655EAC270BC62300266052 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,7 @@
 			isa = PBXGroup;
 			children = (
 				154A29FA270CBEC3006F26EA /* AlarmView.swift */,
+				154A29FC270D0E5E006F26EA /* EyeCell.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 				15655EAD270BC62300266052 /* SceneDelegate.swift in Sources */,
 				15655EC1270BCAFB00266052 /* TableViewController.swift in Sources */,
 				154A29FB270CBEC3006F26EA /* AlarmView.swift in Sources */,
+				154A29FD270D0E5E006F26EA /* EyeCell.swift in Sources */,
 				15655EC3270BCB0700266052 /* CollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
