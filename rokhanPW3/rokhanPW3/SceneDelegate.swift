@@ -18,6 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         let tabBarController = UITabBarController()
         
+        let menadger = AlarmMenadger()
+        menadger.generateRandomAlarms()
+        
         let viewControllers = [
             StackViewController(),
             TableViewController(),
@@ -35,9 +38,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                       UIImage(named: "collect")]
         for i in 0..<titles.count {
             viewControllers[i].title = titles[i];
+            (viewControllers[i] as? AlarmViewControllerProtocol)?.alarmMenadger = menadger
             items[i].image = images[i]
         }
-        
+        (viewControllers[0] as? StackViewController)?.setupStackView()
         
         let navigator = UINavigationController(rootViewController: tabBarController)
         navigator.isNavigationBarHidden = true

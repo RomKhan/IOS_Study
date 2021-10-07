@@ -1,21 +1,13 @@
 import UIKit
 
-class TableViewController: UIViewController {
-    
+class TableViewController: UIViewController, AlarmViewControllerProtocol {
+    var alarmMenadger: AlarmMenadger!
     private var table: UITableView!
-    private var alarms: [AlarmModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
         setupTableView()
-        
-        for _ in 0...200 {
-            alarms.append(AlarmModel(
-                            hours: Int.random(in: 0...23),
-                            minutes: Int.random(in: 0...59),
-                            isActive: Bool.random()))
-        }
     }
     
     private func setupTableView() {
@@ -38,7 +30,7 @@ class TableViewController: UIViewController {
 
 extension TableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return alarms.count
+        return alarmMenadger.getAlarmsCount()
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -52,9 +44,11 @@ extension TableViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell", for: indexPath) as? AlarmCell
         if (cell?.view == nil) {
             cell?.setupAlarm()
+            alarmMenadger.linkViewWithAlarm(view: cell!.view, index: indexPath.row)
         }
-        let model = alarms[indexPath.row]
-        cell?.view.alarmViewUpdate(hours: model.hours, minutes: model.minutes, isActive: model.isActive)
+        if let alarmCell = cell {
+            alarmMenadger.viewRetarget(view: alarmCell.view, index: indexPath.row)
+        }
         return cell ?? UITableViewCell()
     }
 }

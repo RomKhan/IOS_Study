@@ -1,15 +1,9 @@
-//
-//  StackViewController.swift
-//  rokhanPW3
-//
-//  Created by Roman on 05.10.2021.
-//
-
 import UIKit
 
-class StackViewController: UIViewController {
+class StackViewController: UIViewController, AlarmViewControllerProtocol {
     let stackView = UIStackView()
     let scroll = UIScrollView()
+    var alarmMenadger: AlarmMenadger!
     
     private var collection: UICollectionView?
     
@@ -17,7 +11,6 @@ class StackViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .blue
         setupScroll()
-        setupStackView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +32,7 @@ class StackViewController: UIViewController {
         scroll.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
     
-    private func setupStackView() {
+    func setupStackView() {
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.alignment = .fill
@@ -50,14 +43,14 @@ class StackViewController: UIViewController {
         stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        addAlarmsToStack()
+        generateAlarms()
     }
     
-    private func addAlarmsToStack() {
-        for _ in 0...20 {
-            let alarm = AlarmView(19, 20, true)
-            stackView.addArrangedSubview(alarm)
+    private func generateAlarms() {
+        for i in 0..<(alarmMenadger?.getAlarmsCount() ?? 0) {
+            let view = AlarmView()
+            alarmMenadger.linkViewWithAlarm(view: view, index: i)
+            stackView.addArrangedSubview(view)
         }
     }
-
 }

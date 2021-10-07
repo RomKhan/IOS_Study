@@ -1,10 +1,3 @@
-//
-//  EyeCell.swift
-//  rokhanPW3
-//
-//  Created by Roman on 06.10.2021.
-//
-
 import UIKit
 
 final class EyeCell : UITableViewCell {

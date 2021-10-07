@@ -3,15 +3,24 @@ import UIKit
 class AlarmView : UIView {
     private var alarmTime: UILabel!
     private var toggle: UISwitch!
-//    private var menadger: AlarmMenadgerProtocol!
+    var id = -1
+    var updateFunctionId = -1
+    var changeFunction: ((Int) -> ())?
     
-    convenience init(_ alarmHour: Int = 19, _ alarmMinutes: Int = 20, _ isActive: Bool = true) {
+    convenience init(_ alarmHour: Int = 0, _ alarmMinutes: Int = 0, _ isActive: Bool = true, _ index: Int = 0) {
         self.init()
+        setupAlarmView(alarmHour, alarmMinutes, isActive, index)
+    }
+    
+    func setupAlarmView(_ alarmHour: Int, _ alarmMinutes: Int, _ isActive: Bool, _ index: Int) {
+        
         alarmTime = UILabel()
         toggle = UISwitch()
         
         setupAlarmTime(alarmHour, alarmMinutes)
         setupToggle(isActive)
+        id = index
+        toggle.addTarget(_: self, action: #selector(changePush), for: .valueChanged)
         
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: 40).isActive = true
@@ -35,7 +44,16 @@ class AlarmView : UIView {
     }
     
     func alarmViewUpdate(hours: Int, minutes: Int, isActive: Bool) {
-        alarmTime.text = "\(hours):\(minutes)"
+        setupAlarmTime(hours, minutes)
         toggle.isOn = isActive
     }
+    
+    func alarmToggleUpdate(isActive: Bool) {
+        toggle.isOn = isActive
+    }
+    
+    @objc func changePush() {
+        changeFunction?(id)
+    }
+
 }

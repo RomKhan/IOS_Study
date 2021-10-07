@@ -1,6 +1,6 @@
 import UIKit
 
-class AlarmCell : UITableViewCell {
+class AlarmCellCollection : UICollectionViewCell {
 
     var view: AlarmView!
     
