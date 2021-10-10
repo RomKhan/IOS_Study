@@ -14,9 +14,12 @@ class TableViewController: UIViewController, AlarmViewControllerProtocol {
         let table = UITableView()
         view.addSubview(table)
         
+        table.backgroundColor = UIColor(white: 1, alpha: 0)
         table.register(AlarmCell.self, forCellReuseIdentifier: "alarmCell")
         table.delegate = self
         table.dataSource = self
+        table.rowHeight = 70
+        table.showsVerticalScrollIndicator = false
         
         table.translatesAutoresizingMaskIntoConstraints = false
         table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
@@ -25,6 +28,12 @@ class TableViewController: UIViewController, AlarmViewControllerProtocol {
         table.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
         self.table = table
+    }
+    
+    func alarmAdd() {
+        table.beginUpdates()
+        table.insertRows(at: [IndexPath.init(row: alarmMenadger.getAlarmsCount()-1, section: 0)], with: .automatic)
+        table.endUpdates()
     }
 }
 

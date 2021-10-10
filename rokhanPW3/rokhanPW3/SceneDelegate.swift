@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var menadger = AlarmMenadger()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -18,18 +18,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: windowScene)
         let tabBarController = UITabBarController()
         
-        let menadger = AlarmMenadger()
-        menadger.generateRandomAlarms()
-        
         let viewControllers = [
             StackViewController(),
             TableViewController(),
             CollectionViewController()]
-        viewControllers[0].view.backgroundColor = UIColor.blue
-        viewControllers[1].view.backgroundColor = UIColor.red
-        viewControllers[2].view.backgroundColor = UIColor.green
+        
+        menadger.generateRandomAlarms()
         
         tabBarController.setViewControllers(viewControllers, animated: false)
+        tabBarController.tabBar.tintColor = .orange
+        tabBarController.tabBar.unselectedItemTintColor = .white
+        tabBarController.tabBar.barTintColor = .black
+        tabBarController.tabBar.isTranslucent = false
         
         guard let items = tabBarController.tabBar.items else {return}
         let titles = ["Stack", "Table", "Collection"]
@@ -38,17 +38,39 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                       UIImage(named: "collect")]
         for i in 0..<titles.count {
             viewControllers[i].title = titles[i];
+            viewControllers[i].view.backgroundColor = UIColor(red: CGFloat(28) / 255, green: CGFloat(28) / 255, blue: CGFloat(28) / 255, alpha: 1)
             (viewControllers[i] as? AlarmViewControllerProtocol)?.alarmMenadger = menadger
             items[i].image = images[i]
         }
         (viewControllers[0] as? StackViewController)?.setupStackView()
+        menadger.controllers = viewControllers as? [AlarmViewControllerProtocol]
+        menadger.scene = self
         
         let navigator = UINavigationController(rootViewController: tabBarController)
-        navigator.isNavigationBarHidden = true
+        tabBarController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                      target: self,
+                                                                      action: #selector(addViewControllerShow))
+        tabBarController.navigationItem.rightBarButtonItem?.tintColor = .orange
+        tabBarController.navigationItem.title = "ALARMS"
+        navigator.navigationBar.barTintColor = .black
+        navigator.navigationBar.isTranslucent = false
+        navigator.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         window.rootViewController = navigator
         self.window = window
         window.makeKeyAndVisible()
         
+    }
+    
+    @objc func addViewControllerShow(mode: Bool = false, alarmIndex: Int) {
+        let controller = AlarmConfigureViewController()
+        let detailsTransitioningDelegate = InteractiveModalTransitioningDelegate(from: window?.rootViewController ?? UIViewController(), to: controller)
+        controller.modalPresentationStyle = .custom
+        controller.transitioningDelegate = detailsTransitioningDelegate
+        controller.alarmMenadger = menadger
+        controller.flagMode = mode
+        controller.alarmIndex = alarmIndex
+        
+        window?.rootViewController?.present(controller, animated: true, completion: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -81,4 +103,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
 }
-

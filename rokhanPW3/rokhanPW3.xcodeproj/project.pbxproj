@@ -14,10 +14,13 @@
 		154A29FD270D0E5E006F26EA /* EyeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A29FC270D0E5E006F26EA /* EyeCell.swift */; };
 		154A29FF270D46E5006F26EA /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A29FE270D46E5006F26EA /* AlarmCell.swift */; };
 		154A2A01270D4819006F26EA /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A2A00270D4819006F26EA /* AlarmModel.swift */; };
+		155118C727106128008CB967 /* AlarmConfigureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155118C627106128008CB967 /* AlarmConfigureViewController.swift */; };
+		156357F22711DE0F00A0811C /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156357F12711DE0F00A0811C /* PresentationController.swift */; };
+		156357F42711E0D000A0811C /* InteractiveModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156357F32711E0D000A0811C /* InteractiveModalTransitioningDelegate.swift */; };
+		156357F92712A01400A0811C /* DataBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 156357F72712A01400A0811C /* DataBase.xcdatamodeld */; };
 		15655EAB270BC62300266052 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15655EAA270BC62300266052 /* AppDelegate.swift */; };
 		15655EAD270BC62300266052 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15655EAC270BC62300266052 /* SceneDelegate.swift */; };
 		15655EB4270BC62400266052 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15655EB3270BC62400266052 /* Assets.xcassets */; };
-		15655EB7270BC62400266052 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15655EB5270BC62400266052 /* LaunchScreen.storyboard */; };
 		15655EBF270BCAE100266052 /* StackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15655EBE270BCAE100266052 /* StackViewController.swift */; };
 		15655EC1270BCAFB00266052 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15655EC0270BCAFB00266052 /* TableViewController.swift */; };
 		15655EC3270BCB0700266052 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15655EC2270BCB0700266052 /* CollectionViewController.swift */; };
@@ -31,11 +34,14 @@
 		154A29FC270D0E5E006F26EA /* EyeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeCell.swift; sourceTree = "<group>"; };
 		154A29FE270D46E5006F26EA /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
 		154A2A00270D4819006F26EA /* AlarmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
+		155118C627106128008CB967 /* AlarmConfigureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmConfigureViewController.swift; sourceTree = "<group>"; };
+		156357F12711DE0F00A0811C /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
+		156357F32711E0D000A0811C /* InteractiveModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		156357F82712A01400A0811C /* DataBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataBase.xcdatamodel; sourceTree = "<group>"; };
 		15655EA7270BC62300266052 /* rokhanPW3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rokhanPW3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		15655EAA270BC62300266052 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		15655EAC270BC62300266052 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		15655EB3270BC62400266052 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		15655EB6270BC62400266052 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		15655EB8270BC62400266052 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15655EBE270BCAE100266052 /* StackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackViewController.swift; sourceTree = "<group>"; };
 		15655EC0270BCAFB00266052 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -91,18 +97,21 @@
 		15655EA9270BC62300266052 /* rokhanPW3 */ = {
 			isa = PBXGroup;
 			children = (
+				156357F72712A01400A0811C /* DataBase.xcdatamodeld */,
 				154A2A00270D4819006F26EA /* AlarmModel.swift */,
 				154A29F9270CBE9F006F26EA /* view */,
 				153683F1270E0AE70088DBF1 /* Stack */,
 				15655EAA270BC62300266052 /* AppDelegate.swift */,
 				15655EAC270BC62300266052 /* SceneDelegate.swift */,
+				156357F32711E0D000A0811C /* InteractiveModalTransitioningDelegate.swift */,
+				156357F12711DE0F00A0811C /* PresentationController.swift */,
 				15655EB3270BC62400266052 /* Assets.xcassets */,
-				15655EB5270BC62400266052 /* LaunchScreen.storyboard */,
 				15655EB8270BC62400266052 /* Info.plist */,
 				15655EC0270BCAFB00266052 /* TableViewController.swift */,
 				15655EC2270BCB0700266052 /* CollectionViewController.swift */,
 				153683F8270E2F340088DBF1 /* AlarmMenadger.swift */,
 				1502FC6B270F335000FA97E9 /* AlarmViewControllerProtocol.swift */,
+				155118C627106128008CB967 /* AlarmConfigureViewController.swift */,
 			);
 			path = rokhanPW3;
 			sourceTree = "<group>";
@@ -164,7 +173,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15655EB7270BC62400266052 /* LaunchScreen.storyboard in Resources */,
 				15655EB4270BC62400266052 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,12 +186,16 @@
 			files = (
 				153683F9270E2F340088DBF1 /* AlarmMenadger.swift in Sources */,
 				1502FC6C270F335000FA97E9 /* AlarmViewControllerProtocol.swift in Sources */,
+				156357F92712A01400A0811C /* DataBase.xcdatamodeld in Sources */,
 				15655EBF270BCAE100266052 /* StackViewController.swift in Sources */,
 				15655EAB270BC62300266052 /* AppDelegate.swift in Sources */,
 				15655EAD270BC62300266052 /* SceneDelegate.swift in Sources */,
 				1502FC6E270FBB0000FA97E9 /* AlarmCellCollection.swift in Sources */,
+				155118C727106128008CB967 /* AlarmConfigureViewController.swift in Sources */,
 				15655EC1270BCAFB00266052 /* TableViewController.swift in Sources */,
 				154A29FB270CBEC3006F26EA /* AlarmView.swift in Sources */,
+				156357F42711E0D000A0811C /* InteractiveModalTransitioningDelegate.swift in Sources */,
+				156357F22711DE0F00A0811C /* PresentationController.swift in Sources */,
 				154A2A01270D4819006F26EA /* AlarmModel.swift in Sources */,
 				154A29FD270D0E5E006F26EA /* EyeCell.swift in Sources */,
 				15655EC3270BCB0700266052 /* CollectionViewController.swift in Sources */,
@@ -192,17 +204,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		15655EB5270BC62400266052 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				15655EB6270BC62400266052 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		15655EB9270BC62400266052 /* Debug */ = {
@@ -329,6 +330,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MFM5R3Q3DW;
 				INFOPLIST_FILE = rokhanPW3/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -348,6 +350,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MFM5R3Q3DW;
 				INFOPLIST_FILE = rokhanPW3/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -381,6 +384,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		156357F72712A01400A0811C /* DataBase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				156357F82712A01400A0811C /* DataBase.xcdatamodel */,
+			);
+			currentVersion = 156357F82712A01400A0811C /* DataBase.xcdatamodel */;
+			path = DataBase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 15655E9F270BC62300266052 /* Project object */;
 }

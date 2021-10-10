@@ -6,7 +6,7 @@ class AlarmCellCollection : UICollectionViewCell {
     
     func setupAlarm() {
         translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: 50).isActive = true
+        heightAnchor.constraint(equalToConstant: 70).isActive = true
         translatesAutoresizingMaskIntoConstraints = true
         
         

@@ -9,4 +9,5 @@ import Foundation
 
 protocol AlarmViewControllerProtocol : AnyObject {
     var alarmMenadger: AlarmMenadger! {get set}
+    func alarmAdd()
 }

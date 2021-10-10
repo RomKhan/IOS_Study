@@ -9,7 +9,6 @@ class StackViewController: UIViewController, AlarmViewControllerProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
         setupScroll()
     }
     
@@ -21,8 +20,19 @@ class StackViewController: UIViewController, AlarmViewControllerProtocol {
         )
     }
     
+    func alarmAdd() {
+        let view = AlarmView()
+        alarmMenadger.linkViewWithAlarm(view: view)
+        stackView.addArrangedSubview(view)
+        scroll.contentSize = CGSize(
+            width: self.view.frame.width,
+            height: stackView.frame.height + 70
+        )
+    }
+    
     private func setupScroll() {
         scroll.alwaysBounceVertical = true
+        scroll.showsVerticalScrollIndicator = false
         view.addSubview(scroll)
         
         scroll.translatesAutoresizingMaskIntoConstraints = false
@@ -36,7 +46,7 @@ class StackViewController: UIViewController, AlarmViewControllerProtocol {
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.spacing = 5
+        stackView.spacing = 0
         
         scroll.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false

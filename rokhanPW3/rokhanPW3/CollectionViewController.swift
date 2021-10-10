@@ -2,18 +2,19 @@ import UIKit
 
 class CollectionViewController: UIViewController, AlarmViewControllerProtocol {
     var alarmMenadger: AlarmMenadger!
+    var layoutFlow: UICollectionViewFlowLayout!
     
     private var collection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
         setupCollectionView()
     }
     
     private func setupCollectionView() {
-        let layoutFlow = UICollectionViewFlowLayout()
-        layoutFlow.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        layoutFlow.itemSize = CGSize(width: view.frame.width, height: 40)
+        layoutFlow = UICollectionViewFlowLayout()
+        layoutFlow.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layoutFlow.itemSize = CGSize(width: view.frame.width, height: 70)
+        layoutFlow.minimumLineSpacing = 0
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layoutFlow)
         view.addSubview(collection)
         collection.translatesAutoresizingMaskIntoConstraints = false
@@ -21,12 +22,16 @@ class CollectionViewController: UIViewController, AlarmViewControllerProtocol {
         collection.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         collection.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         collection.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        collection.backgroundColor = .white
         collection.register(AlarmCellCollection.self, forCellWithReuseIdentifier: "alarmCell")
-        collection.showsVerticalScrollIndicator = true
+        collection.showsVerticalScrollIndicator = false
         collection.dataSource = self
         collection.delegate = self
+        collection.backgroundColor = UIColor(white: 1, alpha: 0)
         self.collection = collection
+    }
+    
+    func alarmAdd() {
+        self.collection.reloadData()
     }
 }
 
@@ -40,6 +45,7 @@ extension CollectionViewController : UICollectionViewDataSource {
         if let alarmCell = cell {
             alarmMenadger.viewRetarget(view: alarmCell.view, index: indexPath.row)
         }
+//        cell?.leadingAnchor.constraint(equalTo: self.collection.collectionViewLayout.collectionView!.leadingAnchor).isActive = true
         return cell ?? UICollectionViewCell()
     }
 }
