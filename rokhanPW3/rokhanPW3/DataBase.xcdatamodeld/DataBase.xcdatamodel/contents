@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="18154" systemVersion="20E241" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AlarmModel" representedClassName="AlarmModel" syncable="YES">
+    <entity name="AlarmEntity" representedClassName="AlarmEntity" syncable="YES">
         <attribute name="hours" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="isActive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="minutes" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="AlarmModel" positionX="-63" positionY="-18" width="128" height="89"/>
+        <element name="AlarmEntity" positionX="-63" positionY="-18" width="128" height="89"/>
     </elements>
 </model>

@@ -10,10 +10,14 @@
 		1502FC6C270F335000FA97E9 /* AlarmViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1502FC6B270F335000FA97E9 /* AlarmViewControllerProtocol.swift */; };
 		1502FC6E270FBB0000FA97E9 /* AlarmCellCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1502FC6D270FBB0000FA97E9 /* AlarmCellCollection.swift */; };
 		153683F9270E2F340088DBF1 /* AlarmMenadger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153683F8270E2F340088DBF1 /* AlarmMenadger.swift */; };
+		1541D322271343E00047F81F /* alarm-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1541D321271343E00047F81F /* alarm-2.png */; };
+		1541D3292713725A0047F81F /* AlarmEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1541D3272713725A0047F81F /* AlarmEntity+CoreDataClass.swift */; };
+		1541D32A2713725A0047F81F /* AlarmEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1541D3282713725A0047F81F /* AlarmEntity+CoreDataProperties.swift */; };
+		1541D32C2713FD630047F81F /* iphone_alarm_6.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 1541D32B2713FD630047F81F /* iphone_alarm_6.mp3 */; };
 		154A29FB270CBEC3006F26EA /* AlarmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A29FA270CBEC3006F26EA /* AlarmView.swift */; };
 		154A29FD270D0E5E006F26EA /* EyeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A29FC270D0E5E006F26EA /* EyeCell.swift */; };
 		154A29FF270D46E5006F26EA /* AlarmCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A29FE270D46E5006F26EA /* AlarmCell.swift */; };
-		154A2A01270D4819006F26EA /* AlarmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A2A00270D4819006F26EA /* AlarmModel.swift */; };
+		154A2A01270D4819006F26EA /* AlarmModelObsoled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 154A2A00270D4819006F26EA /* AlarmModelObsoled.swift */; };
 		155118C727106128008CB967 /* AlarmConfigureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 155118C627106128008CB967 /* AlarmConfigureViewController.swift */; };
 		156357F22711DE0F00A0811C /* PresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156357F12711DE0F00A0811C /* PresentationController.swift */; };
 		156357F42711E0D000A0811C /* InteractiveModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 156357F32711E0D000A0811C /* InteractiveModalTransitioningDelegate.swift */; };
@@ -30,10 +34,14 @@
 		1502FC6B270F335000FA97E9 /* AlarmViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewControllerProtocol.swift; sourceTree = "<group>"; };
 		1502FC6D270FBB0000FA97E9 /* AlarmCellCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCellCollection.swift; sourceTree = "<group>"; };
 		153683F8270E2F340088DBF1 /* AlarmMenadger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmMenadger.swift; sourceTree = "<group>"; };
+		1541D321271343E00047F81F /* alarm-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alarm-2.png"; sourceTree = "<group>"; };
+		1541D3272713725A0047F81F /* AlarmEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlarmEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1541D3282713725A0047F81F /* AlarmEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlarmEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1541D32B2713FD630047F81F /* iphone_alarm_6.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = iphone_alarm_6.mp3; sourceTree = "<group>"; };
 		154A29FA270CBEC3006F26EA /* AlarmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmView.swift; sourceTree = "<group>"; };
 		154A29FC270D0E5E006F26EA /* EyeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EyeCell.swift; sourceTree = "<group>"; };
 		154A29FE270D46E5006F26EA /* AlarmCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCell.swift; sourceTree = "<group>"; };
-		154A2A00270D4819006F26EA /* AlarmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModel.swift; sourceTree = "<group>"; };
+		154A2A00270D4819006F26EA /* AlarmModelObsoled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmModelObsoled.swift; sourceTree = "<group>"; };
 		155118C627106128008CB967 /* AlarmConfigureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmConfigureViewController.swift; sourceTree = "<group>"; };
 		156357F12711DE0F00A0811C /* PresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationController.swift; sourceTree = "<group>"; };
 		156357F32711E0D000A0811C /* InteractiveModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveModalTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +75,15 @@
 			path = Stack;
 			sourceTree = "<group>";
 		};
+		1541D320271323280047F81F /* model */ = {
+			isa = PBXGroup;
+			children = (
+				1541D3272713725A0047F81F /* AlarmEntity+CoreDataClass.swift */,
+				1541D3282713725A0047F81F /* AlarmEntity+CoreDataProperties.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		154A29F9270CBE9F006F26EA /* view */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +114,9 @@
 		15655EA9270BC62300266052 /* rokhanPW3 */ = {
 			isa = PBXGroup;
 			children = (
+				1541D320271323280047F81F /* model */,
 				156357F72712A01400A0811C /* DataBase.xcdatamodeld */,
-				154A2A00270D4819006F26EA /* AlarmModel.swift */,
+				154A2A00270D4819006F26EA /* AlarmModelObsoled.swift */,
 				154A29F9270CBE9F006F26EA /* view */,
 				153683F1270E0AE70088DBF1 /* Stack */,
 				15655EAA270BC62300266052 /* AppDelegate.swift */,
@@ -106,6 +124,8 @@
 				156357F32711E0D000A0811C /* InteractiveModalTransitioningDelegate.swift */,
 				156357F12711DE0F00A0811C /* PresentationController.swift */,
 				15655EB3270BC62400266052 /* Assets.xcassets */,
+				1541D32B2713FD630047F81F /* iphone_alarm_6.mp3 */,
+				1541D321271343E00047F81F /* alarm-2.png */,
 				15655EB8270BC62400266052 /* Info.plist */,
 				15655EC0270BCAFB00266052 /* TableViewController.swift */,
 				15655EC2270BCB0700266052 /* CollectionViewController.swift */,
@@ -173,6 +193,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1541D32C2713FD630047F81F /* iphone_alarm_6.mp3 in Resources */,
+				1541D322271343E00047F81F /* alarm-2.png in Resources */,
 				15655EB4270BC62400266052 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,14 +211,16 @@
 				156357F92712A01400A0811C /* DataBase.xcdatamodeld in Sources */,
 				15655EBF270BCAE100266052 /* StackViewController.swift in Sources */,
 				15655EAB270BC62300266052 /* AppDelegate.swift in Sources */,
+				1541D3292713725A0047F81F /* AlarmEntity+CoreDataClass.swift in Sources */,
 				15655EAD270BC62300266052 /* SceneDelegate.swift in Sources */,
 				1502FC6E270FBB0000FA97E9 /* AlarmCellCollection.swift in Sources */,
 				155118C727106128008CB967 /* AlarmConfigureViewController.swift in Sources */,
 				15655EC1270BCAFB00266052 /* TableViewController.swift in Sources */,
 				154A29FB270CBEC3006F26EA /* AlarmView.swift in Sources */,
+				1541D32A2713725A0047F81F /* AlarmEntity+CoreDataProperties.swift in Sources */,
 				156357F42711E0D000A0811C /* InteractiveModalTransitioningDelegate.swift in Sources */,
 				156357F22711DE0F00A0811C /* PresentationController.swift in Sources */,
-				154A2A01270D4819006F26EA /* AlarmModel.swift in Sources */,
+				154A2A01270D4819006F26EA /* AlarmModelObsoled.swift in Sources */,
 				154A29FD270D0E5E006F26EA /* EyeCell.swift in Sources */,
 				15655EC3270BCB0700266052 /* CollectionViewController.swift in Sources */,
 				154A29FF270D46E5006F26EA /* AlarmCell.swift in Sources */,

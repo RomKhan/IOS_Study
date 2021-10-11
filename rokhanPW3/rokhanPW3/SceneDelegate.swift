@@ -15,15 +15,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
+        UNUserNotificationCenter.current().delegate = self
+        
         let window = UIWindow(windowScene: windowScene)
         let tabBarController = UITabBarController()
+        
+        menadger.scene = self
+        menadger.loadFromDataBase()
+        
         
         let viewControllers = [
             StackViewController(),
             TableViewController(),
             CollectionViewController()]
         
-        menadger.generateRandomAlarms()
         
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabBar.tintColor = .orange
@@ -44,7 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         (viewControllers[0] as? StackViewController)?.setupStackView()
         menadger.controllers = viewControllers as? [AlarmViewControllerProtocol]
-        menadger.scene = self
         
         let navigator = UINavigationController(rootViewController: tabBarController)
         tabBarController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
@@ -102,4 +106,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
 
+}
+
+extension SceneDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.sound, .banner])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    }
 }

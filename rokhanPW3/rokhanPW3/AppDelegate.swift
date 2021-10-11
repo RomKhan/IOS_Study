@@ -7,14 +7,21 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
-@main
+    @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .criticalAlert]) { isAgree, error in
+            guard isAgree else { return }
+            UNUserNotificationCenter.current().getNotificationSettings(completionHandler: {(settings) in
+                guard settings.authorizationStatus == .authorized else { return }
+            })
+        }
         return true
     }
+
 
     // MARK: UISceneSession Lifecycle
 
@@ -73,4 +80,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
 }
-

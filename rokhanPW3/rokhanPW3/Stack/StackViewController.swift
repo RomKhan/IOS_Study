@@ -30,6 +30,13 @@ class StackViewController: UIViewController, AlarmViewControllerProtocol {
         )
     }
     
+    func alarmRemove(index: Int) {
+        let f = stackView.arrangedSubviews[index] as? AlarmView
+        f?.hide()
+        stackView.removeArrangedSubview(stackView.arrangedSubviews[index])
+        viewDidAppear(true)
+    }
+    
     private func setupScroll() {
         scroll.alwaysBounceVertical = true
         scroll.showsVerticalScrollIndicator = false

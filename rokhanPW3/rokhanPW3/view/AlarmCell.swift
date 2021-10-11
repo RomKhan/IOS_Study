@@ -4,9 +4,15 @@ class AlarmCell : UITableViewCell {
 
     var view: AlarmView!
     
+    override func prepareForReuse() {
+        if view.isHidden == true {
+            view = nil
+        }
+    }
+    
     func setupAlarm() {
         translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: 70).isActive = true
+        heightAnchor.constraint(equalToConstant: 60).isActive = true
         translatesAutoresizingMaskIntoConstraints = true
         
         

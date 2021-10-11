@@ -1,6 +1,6 @@
 import Foundation
 
-class AlarmModel {
+class AlarmModelObsoled {
     var hours: Int
     var minutes: Int
     var isActive: Bool

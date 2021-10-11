@@ -1,6 +1,10 @@
 import UIKit
 
 class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtocol {
+    func alarmRemove(index: Int) {
+        return
+    }
+    
     func alarmAdd() {
         return
     }
@@ -121,7 +125,7 @@ class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtoc
             alarmMenadger.alarmAdd(hour, minute, textField.text! == "" ? "Alarm" : textField.text!, true)
         }
         else {
-            alarmMenadger.alarmChange(index: alarmIndex, data: components)
+            alarmMenadger.alarmChange(index: alarmIndex, data: components, name: textField.text!)
         }
         self.dismiss(animated: true, completion: nil)
     }

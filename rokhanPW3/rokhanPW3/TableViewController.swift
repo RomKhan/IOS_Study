@@ -1,6 +1,7 @@
 import UIKit
 
 class TableViewController: UIViewController, AlarmViewControllerProtocol {
+    
     var alarmMenadger: AlarmMenadger!
     private var table: UITableView!
     
@@ -18,7 +19,6 @@ class TableViewController: UIViewController, AlarmViewControllerProtocol {
         table.register(AlarmCell.self, forCellReuseIdentifier: "alarmCell")
         table.delegate = self
         table.dataSource = self
-        table.rowHeight = 70
         table.showsVerticalScrollIndicator = false
         
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -35,6 +35,16 @@ class TableViewController: UIViewController, AlarmViewControllerProtocol {
         table.insertRows(at: [IndexPath.init(row: alarmMenadger.getAlarmsCount()-1, section: 0)], with: .automatic)
         table.endUpdates()
     }
+    
+    func alarmRemove(index: Int) {
+        self.table.beginUpdates()
+        let cellOptional = table.cellForRow(at: IndexPath(row: index, section: 0)) as? AlarmCell
+        if let cell = cellOptional {
+            cell.view.hide()
+            table.deleteRows(at: [IndexPath(row: index, section: 0)], with: .bottom)
+        }
+        self.table.endUpdates()
+    }
 }
 
 extension TableViewController: UITableViewDelegate {
@@ -45,6 +55,7 @@ extension TableViewController: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
 }
 
 extension TableViewController: UITableViewDataSource {
@@ -58,6 +69,11 @@ extension TableViewController: UITableViewDataSource {
         if let alarmCell = cell {
             alarmMenadger.viewRetarget(view: alarmCell.view, index: indexPath.row)
         }
+        cell?.isHidden = false
         return cell ?? UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
 }
