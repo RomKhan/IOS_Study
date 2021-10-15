@@ -13,6 +13,7 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Запрос разрешения на отправку уведомлений (для того, чтобы будильники работали).
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .criticalAlert]) { isAgree, error in
             guard isAgree else { return }
             UNUserNotificationCenter.current().getNotificationSettings(completionHandler: {(settings) in

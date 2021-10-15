@@ -1,5 +1,7 @@
 import UIKit
 
+/// Класс для окна настройки будильника.
+/// Помогает производить кастомный презент экрана.
 final class InteractiveModalTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
     var interactiveDismiss = true
     

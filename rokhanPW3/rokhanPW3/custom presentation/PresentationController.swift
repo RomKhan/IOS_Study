@@ -1,5 +1,7 @@
 import UIKit
 
+/// Класс для окна настройки будильника.
+/// Помогает производить кастомный презент экрана.
 class PresentationController: UIPresentationController {
     let blurEffectView: UIVisualEffectView!
         var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer()
@@ -19,17 +21,17 @@ class PresentationController: UIPresentationController {
             return CGRect(origin: CGPoint(x: 0, y: self.containerView!.frame.height - 500), size: CGSize(width: self.containerView!.frame.width, height: 500))
         }
         override func dismissalTransitionWillBegin() {
-            self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
-                self.blurEffectView.alpha = 0
-            }, completion: { (UIViewControllerTransitionCoordinatorContext) in
-                self.blurEffectView.removeFromSuperview()
+            self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] (UIViewControllerTransitionCoordinatorContext) in
+                self?.blurEffectView.alpha = 0
+            }, completion: { [weak self] (UIViewControllerTransitionCoordinatorContext) in
+                self?.blurEffectView.removeFromSuperview()
             })
         }
         override func presentationTransitionWillBegin() {
             self.blurEffectView.alpha = 0
             self.containerView?.addSubview(blurEffectView)
-            self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (UIViewControllerTransitionCoordinatorContext) in
-                self.blurEffectView.alpha = 1
+            self.presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] (UIViewControllerTransitionCoordinatorContext) in
+                self?.blurEffectView.alpha = 1
             }, completion: { (UIViewControllerTransitionCoordinatorContext) in
 
             })

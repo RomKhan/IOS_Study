@@ -14,6 +14,10 @@ final class EyeCell : UITableViewCell {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: 50).isActive = true
         translatesAutoresizingMaskIntoConstraints = true
+        setupImage()
+    }
+    
+    private func setupImage() {
         let image = UIImageView(image: UIImage(named: "eye"))
         addSubview(image)
         image.translatesAutoresizingMaskIntoConstraints = false

@@ -4,10 +4,9 @@ class AlarmView : UIView, UIGestureRecognizerDelegate {
     private let deleteButton = UIButton()
     private let downSeparator = UIView()
     private let content: UIView = UIView()
-    private var alarmTime: UILabel!
-    private var alarmName: UILabel!
-    private var toggle: UISwitch!
-    var isHided = false
+    private var alarmTime: UILabel = UILabel()
+    private var alarmName: UILabel = UILabel()
+    private var toggle: UISwitch = UISwitch()
     var id = -1
     var updateFunctionId = -1
     var changeFunction: ((Int) -> ())?
@@ -19,25 +18,16 @@ class AlarmView : UIView, UIGestureRecognizerDelegate {
         setupAlarmView(Int32(alarmHour), Int32(alarmMinutes), name, isActive, index)
     }
     
+    
+    /// Функция запускает окно редактирования (срабатвает при клике на графическое отображение будильника на экране).
     @objc func selectActionMenuOpen(sender: UITapGestureRecognizer) {
         if sender.state == .ended {
             editfunction?(id)
         }
     }
     
-    @objc func miniDeleteButtoShow(sender: UISwipeGestureRecognizer) {
-        if sender.direction == .right {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.deleteButton.frame.size = CGSize(width: 60, height: 60)
-            })
-        }
-        else if (sender.direction == .left) {
-            UIView.animate(withDuration: 0.2, animations: {
-                self.deleteButton.frame.size = CGSize(width: 0, height: 60)
-            })
-        }
-    }
-    
+    /// Отображение кнопки дуаления на экране.
+    /// Если отображено больше 2/3 кнопки удаления, то будильник автоматически удалится.
     private var deleteButtonWidth = CGFloat(0)
     @objc func deleteActionMenu(sender: UIPanGestureRecognizer) {
         if sender.state == .began {
@@ -53,7 +43,7 @@ class AlarmView : UIView, UIGestureRecognizerDelegate {
             else if (value > frame.width) {
                 value = self.frame.width
             }
-            if deleteButton.frame.width > frame.width / 2 {
+            if deleteButton.frame.width > frame.width / 3 * 2 {
                 sender.state = .ended
             }
             
@@ -61,18 +51,19 @@ class AlarmView : UIView, UIGestureRecognizerDelegate {
         }
         else if sender.state == .ended {
             if deleteButton.frame.width < 30 {
-                UIView.animate(withDuration: 0.1, animations: {
-                    self.deleteButton.frame.size = CGSize(width: 0, height: 60)
+                UIView.animate(withDuration: 0.1, animations: { [weak self] in
+                    self?.deleteButton.frame.size = CGSize(width: 0, height: 60)
                 })
             }
-            else if deleteButton.frame.width < 100 {
-                UIView.animate(withDuration: 0.1, animations: {
-                    self.deleteButton.frame.size = CGSize(width: 60, height: 60)
+            else if deleteButton.frame.width < 200 {
+                UIView.animate(withDuration: 0.1, animations: { [weak self] in
+                    self?.deleteButton.frame.size = CGSize(width: 60, height: 60)
                 })
             }
             else {
-                UIView.animate(withDuration: 0.1, animations: {
-                    self.deleteButton.frame.size = CGSize(width: self.frame.width, height: 60)
+                hide()
+                UIView.animate(withDuration: 0.1, animations: { [weak self] in
+                    self?.deleteButton.frame.size = CGSize(width: self?.frame.width ?? 0, height: 60)
                 })
                 deleteFunction?(id)
             }
@@ -82,56 +73,57 @@ class AlarmView : UIView, UIGestureRecognizerDelegate {
     
     
     func setupAlarmView(_ alarmHour: Int32, _ alarmMinutes: Int32, _ name: String?, _ isActive: Bool, _ index: Int) {
+        id = index
+        translatesAutoresizingMaskIntoConstraints = false
+        heightAnchor.constraint(equalToConstant: 60).isActive = true
+        backgroundColor = UIColor(red: CGFloat(15) / 255, green: CGFloat(15) / 255, blue: CGFloat(15) / 255, alpha: 1)
         
+        setupRecognazers()
+        setupDeleteButton()
+        setupContentView()
+        setupDownSeparator()
+        setupAlarmTime(Int(alarmHour), Int(alarmMinutes))
+        setupAlarmName(name: name ?? "Alarm")
+        setupToggle(isActive)
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectActionMenuOpen))
-        let panGuesture = UIPanGestureRecognizer(target: self, action: #selector(deleteActionMenu))
-        panGuesture.delegate = self
-        self.addGestureRecognizer(panGuesture)
-        self.addGestureRecognizer(tapGesture)
-        
-        
-        addSubview(content)
-        addSubview(deleteButton)
-        
+    }
+    
+    private func setupDownSeparator() {
         content.addSubview(downSeparator)
-        
         downSeparator.translatesAutoresizingMaskIntoConstraints = false
         downSeparator.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         downSeparator.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         downSeparator.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         downSeparator.heightAnchor.constraint(equalToConstant: 1).isActive = true
         downSeparator.backgroundColor = .orange
-        
-        alarmTime = UILabel()
-        alarmTime.font = UIFont.systemFont(ofSize: 60)
-        alarmName = UILabel()
-        alarmTime.font = UIFont.systemFont(ofSize: 24)
-        toggle = UISwitch()
-        toggle.onTintColor = .orange
-        
-        setupAlarmTime(Int(alarmHour), Int(alarmMinutes))
-        setupAlarmName(name: name ?? "Alarm")
-        setupToggle(isActive)
-        id = index
-        toggle.addTarget(_: self, action: #selector(changePush), for: .valueChanged)
-        
-        content.translatesAutoresizingMaskIntoConstraints = false
-        content.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        content.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        content.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        content.leadingAnchor.constraint(equalTo: deleteButton.trailingAnchor).isActive = true
-        translatesAutoresizingMaskIntoConstraints = false
-        heightAnchor.constraint(equalToConstant: 60).isActive = true
-        backgroundColor = UIColor(red: CGFloat(15) / 255, green: CGFloat(15) / 255, blue: CGFloat(15) / 255, alpha: 1)
-        
+    }
+    
+    private func setupDeleteButton() {
+        addSubview(deleteButton)
         deleteButton.center = CGPoint(x: CGFloat(0), y: CGFloat(0))
         deleteButton.frame.size = CGSize(width: 0, height: 60)
         deleteButton.backgroundColor = .orange
         deleteButton.tintColor = .black
         deleteButton.setTitle("Delete", for: .normal)
     }
+    private func setupContentView() {
+        addSubview(content)
+        content.translatesAutoresizingMaskIntoConstraints = false
+        content.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        content.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        content.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        content.leadingAnchor.constraint(equalTo: deleteButton.trailingAnchor).isActive = true
+    }
     
+    private func setupRecognazers() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectActionMenuOpen))
+        let panGuesture = UIPanGestureRecognizer(target: self, action: #selector(deleteActionMenu))
+        panGuesture.delegate = self
+        self.addGestureRecognizer(panGuesture)
+        self.addGestureRecognizer(tapGesture)
+    }
+    
+    /// Функция позволяет рекогнайзеру захватываеть только горизонтальные движения, чтобы можно было продолжать скролить ячейки.
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
         if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
             let translation = panGestureRecognizer.translation(in: superview)
@@ -143,17 +135,23 @@ class AlarmView : UIView, UIGestureRecognizerDelegate {
         return false
     }
     
-    func setupAlarmName(name: String) {
-        alarmName.text = name
+    private func setupAlarmName(name: String) {
+        updateAlarmName(name: name)
         alarmName.textColor = .white
+        alarmTime.font = UIFont.systemFont(ofSize: 24)
         content.addSubview(alarmName)
         alarmName.translatesAutoresizingMaskIntoConstraints = false
         alarmName.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 10).isActive = true
         alarmName.topAnchor.constraint(equalTo: alarmTime.bottomAnchor).isActive = true
     }
     
-    func setupAlarmTime(_ alarmHour: Int, _ alarmMinutes: Int) {
-        alarmTime.text = String(format: "%02d:%02d", alarmHour, alarmMinutes)
+    func updateAlarmName(name: String) {
+        alarmName.text = name
+    }
+    
+    private func setupAlarmTime(_ alarmHour: Int, _ alarmMinutes: Int) {
+        updateAlarmTime(alarmHour, alarmMinutes)
+        alarmTime.font = UIFont.systemFont(ofSize: 60)
         alarmTime.textColor = .white
         content.addSubview(alarmTime)
         alarmTime.translatesAutoresizingMaskIntoConstraints = false
@@ -161,27 +159,37 @@ class AlarmView : UIView, UIGestureRecognizerDelegate {
         alarmTime.centerYAnchor.constraint(equalTo: content.centerYAnchor, constant: -12).isActive = true
     }
     
-    func setupToggle(_ isActive: Bool) {
-        toggle.isOn = isActive
+    func updateAlarmTime(_ alarmHour: Int, _ alarmMinutes: Int) {
+        alarmTime.text = String(format: "%02d:%02d", alarmHour, alarmMinutes)
+    }
+    
+    private func setupToggle(_ isActive: Bool) {
+        alarmToggleUpdate(isActive: isActive)
+        toggle.addTarget(_: self, action: #selector(changePush), for: .valueChanged)
+        toggle.onTintColor = .orange
         content.addSubview(toggle)
         toggle.translatesAutoresizingMaskIntoConstraints = false
         toggle.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -10).isActive = true
         toggle.centerYAnchor.constraint(equalTo: content.centerYAnchor).isActive = true
     }
     
-    func alarmViewUpdate(_ hours: Int32, _ minutes: Int32, _ name: String?, _ isActive: Bool) {
-        setupAlarmName(name: name ?? "Alarm")
-        setupAlarmTime(Int(hours), Int(minutes))
-        toggle.isOn = isActive
-    }
-    
     func alarmToggleUpdate(isActive: Bool) {
         toggle.isOn = isActive
     }
     
+    // Полностью аплейтит view.
+    func alarmViewUpdate(_ hours: Int32, _ minutes: Int32, _ name: String?, _ isActive: Bool) {
+        updateAlarmName(name: name ?? "Alarm")
+        updateAlarmTime(Int(hours), Int(minutes))
+        alarmToggleUpdate(isActive: isActive)
+    }
+    
+    /// Активирует функцию изменения будильника.
     @objc func changePush() {
         changeFunction?(id)
     }
+    
+    /// Скрывает видимость окна.
     func hide() {
         UIView.animate(
                     withDuration: 0.35,
@@ -189,11 +197,10 @@ class AlarmView : UIView, UIGestureRecognizerDelegate {
                     usingSpringWithDamping: 0.9,
                     initialSpringVelocity: 1,
                     options: [],
-                    animations: {
-                        self.isHidden = true
+                    animations: { [weak self] in
+                        self?.isHidden = true
                     },
                     completion: nil
                 )
-        isHidden = true
     }
 }

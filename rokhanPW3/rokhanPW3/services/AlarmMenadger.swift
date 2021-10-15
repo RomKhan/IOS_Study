@@ -2,15 +2,19 @@ import UIKit
 import CoreData
 import EventKit
 
+/// Менаджер будильников
+/// Хранит данные о моделях, управляет базой данных.
+/// Также несет функцию посредника между alarmview и model.
 class AlarmMenadger {
     private var alarmModels: [AlarmEntity] = []
     private var allAlarmViews: [AlarmView] = []
-    var idOfDeletedAlarms: [Int] = []
     private var context = ((UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext)!
     var controllers: [AlarmViewControllerProtocol]?
+    /// Список функций, которые будут вызываться, чтобы обновить все view, которые относяться к одному будильнику.
     var functions: [Int: [(Int, (_ hours: Int32, _ minutes: Int32, _ name: String?, _ isActive: Bool)->())]] = [:]
     var scene: SceneDelegate?
     
+    /// Стандартный конструктор добавляет обсервер, который сохраняет бд, когда приложение становится не активным.
     init() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(contextSave),
@@ -18,6 +22,7 @@ class AlarmMenadger {
                                                object: nil)
     }
     
+    /// Сохранение бд.
     @objc func contextSave() {
         do {
             try context.save()
@@ -27,23 +32,8 @@ class AlarmMenadger {
         }
     }
     
-    func addAlertNotification(index: Int) {
-        let content = UNMutableNotificationContent()
-        content.title = alarmModels[index].name ?? "No name"
-        content.body = "Будильник, который Вы заводили"
-        content.sound = UNNotificationSound.init(named: UNNotificationSoundName.init("iphone_alarm_6.mp3"))
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU") // set locale to reliable US_POSIX
-        dateFormatter.dateFormat = "HH:mm"
-        let date = dateFormatter.date(from:"\(alarmModels[index].hours):\(alarmModels[index].minutes)")!
-        
-        let triger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.hour, .minute], from: date), repeats: false)
-        let reqest = UNNotificationRequest(identifier: "\(index)", content: content, trigger: triger)
-        
-        UNUserNotificationCenter.current().add(reqest) { [weak self] (error) in self?.alarmModels[index].isActive = false }
-    }
     
+    /// Загрузка данных из бд.
     func loadFromDataBase() {
         do {
             alarmModels = try context.fetch(AlarmEntity.fetchRequest()) as [AlarmEntity]
@@ -53,27 +43,30 @@ class AlarmMenadger {
         }
     }
     
-    func alarmStatusChanged(id: Int) {
+    /// Добавление уведомления о будильнике.
+    func addAlertNotification(index: Int) {
+        let content = UNMutableNotificationContent()
+        content.title = alarmModels[index].name ?? "No name"
+        content.body = "Будильник, который Вы заводили"
+        content.sound = UNNotificationSound.init(named: UNNotificationSoundName.init("iphone_alarm_6.mp3"))
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.dateFormat = "HH:mm"
+        let date = dateFormatter.date(from:"\(alarmModels[index].hours):\(alarmModels[index].minutes)")!
         
-    UNUserNotificationCenter.current().getPendingNotificationRequests { (alarms) in
-        for i in 0..<alarms.count {
-            print(alarms[i].identifier)
-        }
-        print(alarms.count)
-            return
-        }
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(id)"])
-        alarmModels[id].isActive = !alarmModels[id].isActive
-        alarmUpdate(index: id)
+        let triger = UNCalendarNotificationTrigger(dateMatching: Calendar.current.dateComponents([.hour, .minute], from: date), repeats: false)
+        let reqest = UNNotificationRequest(identifier: "\(index)", content: content, trigger: triger)
+        
+        UNUserNotificationCenter.current().add(reqest) { (error) in return }
     }
     
+    /// Метод удаление будильника.
     func alarmRemove(index: Int) {
-        idOfDeletedAlarms.append(index)
         context.delete(alarmModels[index])
-        
-//        context.delete(alarmModels[index])
         alarmModels.remove(at: index)
         
+        // Сначала смещаем словарь функций на 1 вправо(от index) по ключу и удаляем последний ключ.
         for k in 0..<functions.count - 1 {
             if k >= index {
                 functions[k] = functions[k+1]
@@ -82,27 +75,32 @@ class AlarmMenadger {
         functions.removeValue(forKey: functions.count - 1)
 
         allAlarmViews.remove(at: index)
+        // Меняем индекс всех view, которые расположены правее index.
         for view in allAlarmViews {
             if view.id >= index {
                 view.id -= 1
             }
         }
         
+        // Вызываем методы удаления у всех контроллеров.
         guard let viewControllers = controllers else {return}
         for viewController in viewControllers {
             viewController.alarmRemove(index: index)
         }
     }
     
-    func alarmUpdate(index: Int) {
-        for function in functions[index]! {
-            function.1(alarmModels[index].hours,
-                       alarmModels[index].minutes,
-                       alarmModels[index].name,
-                       alarmModels[index].isActive)
+    /// Метода добавления будильника вместе с обновлением контроллеров.
+    func alarmAddAndReloadContollers(_ hours: Int, _ minutes: Int, _ name: String, _ isActive: Bool) {
+        addAlarm(hours: hours, minutes: minutes, name: name, isActive: isActive)
+        
+        guard let viewControllers = controllers else {return}
+        
+        for viewController in viewControllers {
+            viewController.alarmAdd()
         }
     }
     
+    /// Обычный метод добавления будильников.
     func addAlarm(hours: Int, minutes: Int, name: String, isActive: Bool) {
         let alarm = AlarmEntity(context: context)
         alarm.hours = Int32(hours)
@@ -113,10 +111,46 @@ class AlarmMenadger {
         addAlertNotification(index: alarmModels.count - 1)
     }
     
-    func getAlarmByIndex(_ index: Int) -> AlarmEntity {
-        return alarmModels[index];
+    /// Метод обновления будильника.
+    /// Вызывает функции обновления у всех view, соответвующих переданному индексу.
+    func alarmUpdate(index: Int) {
+        for function in functions[index]! {
+            function.1(alarmModels[index].hours,
+                       alarmModels[index].minutes,
+                       alarmModels[index].name,
+                       alarmModels[index].isActive)
+        }
     }
     
+    /// Событие изменения будильника, вызываемое view
+    @objc private func alarmIsChanged(_ sender: Any?) {
+        let view = sender as? AlarmView
+        if let alarmView = view {
+            alarmStatusChanged(id: alarmView.id)
+        }
+    }
+    
+    /// Изменение статуса будильника.
+    /// Здесь происходит отписка от событие и смена статуса модели.
+    func alarmStatusChanged(id: Int) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(id)"])
+        alarmModels[id].isActive = !alarmModels[id].isActive
+        alarmUpdate(index: id)
+    }
+    
+    /// Полное изменение будильника.
+    func alarmChange(index: Int, data: DateComponents, name: String = "Alarm") {
+        alarmModels[index].hours =  Int32(data.hour!)
+        alarmModels[index].minutes =  Int32(data.minute!)
+        if (name != "Alarm") {
+            alarmModels[index].name = name
+        }
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(index)"])
+        addAlertNotification(index: index)
+        alarmUpdate(index: index)
+    }
+    
+    /// Привязывание нового view к модели по индексу.
     func linkViewWithAlarm(view: AlarmView, index: Int = -1) {
         var correctIndex = index
         if index == -1 || index >= getAlarmsCount() {
@@ -141,21 +175,7 @@ class AlarmMenadger {
         allAlarmViews.append(view)
     }
     
-    func alarmConfigureWindowOpen(index: Int) {
-        scene?.addViewControllerShow(mode: true, alarmIndex: index)
-    }
-    
-    func alarmChange(index: Int, data: DateComponents, name: String = "Alarm") {
-        alarmModels[index].hours =  Int32(data.hour!)
-        alarmModels[index].minutes =  Int32(data.minute!)
-        if (name != "Alarm") {
-            alarmModels[index].name = name
-        }
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: ["\(index)"])
-        addAlertNotification(index: index)
-        alarmUpdate(index: index)
-    }
-
+    /// Перетаргетирование существующего view к новой модели будильника.
     func viewRetarget(view: AlarmView, index: Int) {
         let indexOfFunction = functions[view.id]?.firstIndex{$0.0 == view.updateFunctionId}
         if let i = indexOfFunction {
@@ -179,13 +199,13 @@ class AlarmMenadger {
         }
     }
     
-    @objc private func alarmIsChanged(_ sender: Any?) {
-        let view = sender as? AlarmView
-        if let alarmView = view {
-            alarmStatusChanged(id: alarmView.id)
-        }
+    /// Открытие меню настройки будильника.
+    func alarmConfigureWindowOpen(index: Int) {
+        scene?.addViewControllerShow(mode: true, alarmIndex: index)
     }
     
+    /// Генерация рандомного количества будильников.
+    /// На даноом моменте нигде не используется, использовалось в предыдущих версиях программы.
     func generateRandomAlarms() {
         for _ in 0...Int.random(in: 0...100) {
             let alarm = AlarmEntity(context: context)
@@ -201,13 +221,7 @@ class AlarmMenadger {
         return alarmModels.count
     }
     
-    func alarmAdd(_ hours: Int, _ minutes: Int, _ name: String, _ isActive: Bool) {
-        addAlarm(hours: hours, minutes: minutes, name: name, isActive: isActive)
-        
-        guard let viewControllers = controllers else {return}
-        
-        for viewController in viewControllers {
-            viewController.alarmAdd()
-        }
+    func getAlarmByIndex(_ index: Int) -> AlarmEntity {
+        return alarmModels[index];
     }
 }

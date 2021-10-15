@@ -1,11 +1,10 @@
 import UIKit
 
 class StackViewController: UIViewController, AlarmViewControllerProtocol {
+    private var collection: UICollectionView?
     let stackView = UIStackView()
     let scroll = UIScrollView()
     var alarmMenadger: AlarmMenadger!
-    
-    private var collection: UICollectionView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +30,8 @@ class StackViewController: UIViewController, AlarmViewControllerProtocol {
     }
     
     func alarmRemove(index: Int) {
-        let f = stackView.arrangedSubviews[index] as? AlarmView
-        f?.hide()
+        (stackView.arrangedSubviews[index] as? AlarmView)?.hide()
+        (stackView.arrangedSubviews[index] as? AlarmView)?.isHidden = true
         stackView.removeArrangedSubview(stackView.arrangedSubviews[index])
         viewDidAppear(true)
     }
@@ -63,6 +62,7 @@ class StackViewController: UIViewController, AlarmViewControllerProtocol {
         generateAlarms()
     }
     
+    /// Генерация и добавление AlarmView в стек.
     private func generateAlarms() {
         for i in 0..<(alarmMenadger?.getAlarmsCount() ?? 0) {
             let view = AlarmView()

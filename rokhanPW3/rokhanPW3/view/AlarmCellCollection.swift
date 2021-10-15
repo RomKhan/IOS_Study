@@ -14,8 +14,10 @@ class AlarmCellCollection : UICollectionViewCell {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: 60).isActive = true
         translatesAutoresizingMaskIntoConstraints = true
-        
-        
+        setupView()
+    }
+    
+    private func setupView() {
         view = AlarmView()
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -24,5 +26,4 @@ class AlarmCellCollection : UICollectionViewCell {
         view.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         view.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }
-    
 }

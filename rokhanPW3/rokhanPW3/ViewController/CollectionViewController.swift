@@ -3,11 +3,14 @@ import UIKit
 class CollectionViewController: UIViewController, AlarmViewControllerProtocol {
     var alarmMenadger: AlarmMenadger!
     var layoutFlow: UICollectionViewFlowLayout!
-    
     private var collection: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        collection.reloadData()
     }
     
     private func setupCollectionView() {
@@ -40,22 +43,12 @@ class CollectionViewController: UIViewController, AlarmViewControllerProtocol {
             cell.view.hide()
             collection.deleteItems(at: [IndexPath(row: index, section: 0)])
         }
-//        collection.deleteItems(at: [IndexPath(row: index, section: 0)])
-//        collection.performBatchUpdates({
-//            collection.deleteItems(at: [IndexPath(row: min(index, alarmMenadger.getAlarmsCount() - 1), section: 0)])
-//        }, completion: {_ in
-//            self.collection.reloadItems(at: self.collection.indexPathsForVisibleItems
-//        )})
     }
 }
 
 extension CollectionViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "alarmCell", for: indexPath) as? AlarmCellCollection
-//        if (indexPath.row == 1) {
-//            cell!.frame.size = CGSize(width: cell!.frame.width, height: 0)
-//        }
-//        cell?.isHidden = false
         if (cell?.view == nil) {
             cell?.setupAlarm()
             alarmMenadger.linkViewWithAlarm(view: cell!.view, index: indexPath.row)
@@ -63,11 +56,7 @@ extension CollectionViewController : UICollectionViewDataSource {
         if let alarmCell = cell {
             alarmMenadger.viewRetarget(view: alarmCell.view, index: indexPath.row)
         }
-//        cell?.leadingAnchor.constraint(equalTo: self.collection.collectionViewLayout.collectionView!.leadingAnchor).isActive = true
         return cell ?? UICollectionViewCell()
-    }
-    override func viewDidAppear(_ animated: Bool) {
-        collection.reloadData()
     }
 }
 
@@ -78,9 +67,4 @@ extension CollectionViewController : UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//    }
 }

@@ -48,10 +48,13 @@ class TableViewController: UIViewController, AlarmViewControllerProtocol {
 }
 
 extension TableViewController: UITableViewDelegate {
+    
+    /// Количество ячеек в секции.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return alarmMenadger.getAlarmsCount()
     }
     
+    /// Количетсво секций.
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -60,6 +63,7 @@ extension TableViewController: UITableViewDelegate {
 
 extension TableViewController: UITableViewDataSource {
     
+    /// Выдача ячейки по запросу.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell", for: indexPath) as? AlarmCell
         if (cell?.view == nil) {
@@ -69,10 +73,10 @@ extension TableViewController: UITableViewDataSource {
         if let alarmCell = cell {
             alarmMenadger.viewRetarget(view: alarmCell.view, index: indexPath.row)
         }
-        cell?.isHidden = false
         return cell ?? UITableViewCell()
     }
     
+    /// Высота ячеек.
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }

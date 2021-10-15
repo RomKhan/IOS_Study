@@ -17,25 +17,41 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         UNUserNotificationCenter.current().delegate = self
         
-        let window = UIWindow(windowScene: windowScene)
-        let tabBarController = UITabBarController()
-        
         menadger.scene = self
         menadger.loadFromDataBase()
         
+        let tabBarController = UITabBarController()
+        let window = UIWindow(windowScene: windowScene)
+        let navigator = UINavigationController(rootViewController: tabBarController)
+        setupBarNavigationController(tabBarController)
+        navigator.navigationBar.barTintColor = .black
+        navigator.navigationBar.isTranslucent = false
+        navigator.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        window.rootViewController = navigator
+        self.window = window
+        window.makeKeyAndVisible()
         
+    }
+    
+    /// Настройка таббар контроллера.
+    func setupBarNavigationController(_ tabBarController: UITabBarController) {
         let viewControllers = [
             StackViewController(),
             TableViewController(),
             CollectionViewController()]
-        
         
         tabBarController.setViewControllers(viewControllers, animated: false)
         tabBarController.tabBar.tintColor = .orange
         tabBarController.tabBar.unselectedItemTintColor = .white
         tabBarController.tabBar.barTintColor = .black
         tabBarController.tabBar.isTranslucent = false
+        tabBarController.navigationItem.title = "ALARMS"
+        tabBarController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                      target: self,
+                                                                      action: #selector(addViewControllerShow))
+        tabBarController.navigationItem.rightBarButtonItem?.tintColor = .orange
         
+        // Добваление контроллеров, имен, картинок в таб бар.
         guard let items = tabBarController.tabBar.items else {return}
         let titles = ["Stack", "Table", "Collection"]
         let images = [UIImage(named: "stack"),
@@ -47,24 +63,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             (viewControllers[i] as? AlarmViewControllerProtocol)?.alarmMenadger = menadger
             items[i].image = images[i]
         }
+        
+        // Настройка стека.
         (viewControllers[0] as? StackViewController)?.setupStackView()
+        
+        // Сохранение контроллеров в менаджере.
         menadger.controllers = viewControllers as? [AlarmViewControllerProtocol]
-        
-        let navigator = UINavigationController(rootViewController: tabBarController)
-        tabBarController.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                                      target: self,
-                                                                      action: #selector(addViewControllerShow))
-        tabBarController.navigationItem.rightBarButtonItem?.tintColor = .orange
-        tabBarController.navigationItem.title = "ALARMS"
-        navigator.navigationBar.barTintColor = .black
-        navigator.navigationBar.isTranslucent = false
-        navigator.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        window.rootViewController = navigator
-        self.window = window
-        window.makeKeyAndVisible()
-        
     }
     
+    
+    /// Открывает окно создания будильника.
     @objc func addViewControllerShow(mode: Bool = false, alarmIndex: Int) {
         let controller = AlarmConfigureViewController()
         let detailsTransitioningDelegate = InteractiveModalTransitioningDelegate(from: window?.rootViewController ?? UIViewController(), to: controller)

@@ -1,25 +1,44 @@
 import UIKit
 
-class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtocol {
-    func alarmRemove(index: Int) {
-        return
-    }
-    
-    func alarmAdd() {
-        return
-    }
-    
+/// Окно настройки будильника (всплывает поверху таб бара).
+class AlarmConfigureViewController : UIViewController, AlarmInterfaceContains {
+    private var hasSetPointOrigin = false
+    private var pointOrigin: CGPoint?
+    private var timePicker: UIDatePicker!
+    private var textField: UITextField!
+    private var stackView: UIStackView!
     var alarmMenadger: AlarmMenadger!
-    var hasSetPointOrigin = false
-    var pointOrigin: CGPoint?
-    var timePicker: UIDatePicker!
-    var textField: UITextField!
     var flagMode = false
     var alarmIndex = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .orange
+        
+        setupNotificationObservers()
+        setupBackgroundView()
+        setupStackView()
+        setupLabelOfView()
+        setupDatePicker()
+        setupTextFieldForm()
+        setupSuccesButton()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        if !hasSetPointOrigin {
+            hasSetPointOrigin = true
+            pointOrigin = self.view.frame.origin
+        }
+    }
+    
+    deinit {
+        // Отписка от рекогнайзера, когда окно закрыто.
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    func setupNotificationObservers() {
+        // Подключение рекогнайзера, который позволяет двигать окно.
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panGestureRecognizerAction))
         view.addGestureRecognizer(panGesture)
         NotificationCenter.default.addObserver(self,
@@ -30,7 +49,9 @@ class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtoc
                                                selector: #selector(keyBoardIsAppeared),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
-        
+    }
+    
+    func setupBackgroundView() {
         let container = UIView()
         view.addSubview(container)
         container.translatesAutoresizingMaskIntoConstraints = false
@@ -40,8 +61,10 @@ class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtoc
         container.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         container.layer.cornerRadius = 15
         container.backgroundColor = .black
-        
-        let stackView = UIStackView()
+    }
+    
+    func setupStackView() {
+        stackView = UIStackView()
         stackView.distribution = .fill
         stackView.axis = .vertical
         stackView.alignment = .top
@@ -53,7 +76,9 @@ class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtoc
         stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         stackView.layer.cornerRadius = 10
-        
+    }
+    
+    func setupLabelOfView() {
         let lable = UILabel()
         lable.text = "ALARM MENU"
         lable.textColor = .white
@@ -65,7 +90,9 @@ class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtoc
         lable.leadingAnchor.constraint(equalTo: stackView.leadingAnchor).isActive = true
         lable.trailingAnchor.constraint(equalTo: stackView.trailingAnchor).isActive = true
         lable.topAnchor.constraint(equalTo: stackView.topAnchor, constant: 20).isActive = true
-        
+    }
+    
+    func setupDatePicker() {
         timePicker = UIDatePicker()
         timePicker.timeZone = NSTimeZone.local
         timePicker.backgroundColor = .orange
@@ -79,7 +106,9 @@ class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtoc
         timePicker.translatesAutoresizingMaskIntoConstraints = false
         timePicker.leadingAnchor.constraint(equalTo: stackView.leadingAnchor).isActive = true
         timePicker.trailingAnchor.constraint(equalTo: stackView.trailingAnchor).isActive = true
-        
+    }
+    
+    func setupTextFieldForm() {
         textField = UITextField()
         textField.placeholder = "Название"
         textField.textColor = .white
@@ -90,7 +119,9 @@ class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtoc
         textField.heightAnchor.constraint(greaterThanOrEqualToConstant: 40).isActive = true
         textField.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 20).isActive = true
         textField.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -20).isActive = true
-        
+    }
+    
+    func setupSuccesButton() {
         let succsessButton = UIButton()
         succsessButton.setTitle("Готово", for: .normal)
         succsessButton.setTitleColor(UIColor.black, for: UIControl.State.normal)
@@ -105,11 +136,8 @@ class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtoc
         succsessButton.topAnchor.constraint(greaterThanOrEqualTo: view.bottomAnchor, constant: -80).isActive = true
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
-    }
-    
+    /// Событие появления клавиатуры.
+    /// В этот момент весь интерфейс сдвигается вверх на размер клавиатуры.
     @objc func keyBoardIsAppeared(_ notification: Notification) {
         let keyBoardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
         UIView.animate(withDuration: 0.3) {
@@ -117,12 +145,14 @@ class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtoc
         }
     }
     
+    /// Событие нажатия на кнопку "готово".
+    /// Здесь в зависимости от режима вызываются методы менаджера.
     @objc func successButtonPressed(_ sende: Any?) {
         let components = Calendar.current.dateComponents([.day, .hour, .minute], from: timePicker.date)
         if !flagMode {
             let hour = components.hour!
             let minute = components.minute!
-            alarmMenadger.alarmAdd(hour, minute, textField.text! == "" ? "Alarm" : textField.text!, true)
+            alarmMenadger.alarmAddAndReloadContollers(hour, minute, textField.text! == "" ? "Alarm" : textField.text!, true)
         }
         else {
             alarmMenadger.alarmChange(index: alarmIndex, data: components, name: textField.text!)
@@ -130,12 +160,8 @@ class AlarmConfigureViewController : UIViewController, AlarmViewControllerProtoc
         self.dismiss(animated: true, completion: nil)
     }
     
-    override func viewDidLayoutSubviews() {
-        if !hasSetPointOrigin {
-            hasSetPointOrigin = true
-            pointOrigin = self.view.frame.origin
-        }
-    }
+    /// Обработчик рекогнайзера,
+    /// Меняет положение окна на экране.
     @objc func panGestureRecognizerAction(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: view)
         

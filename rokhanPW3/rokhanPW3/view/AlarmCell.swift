@@ -14,8 +14,10 @@ class AlarmCell : UITableViewCell {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: 60).isActive = true
         translatesAutoresizingMaskIntoConstraints = true
-        
-        
+        setupView()
+    }
+    
+    private func setupView() {
         view = AlarmView()
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
