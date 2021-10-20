@@ -33,8 +33,8 @@ class CollectionViewController: UIViewController, AlarmViewControllerProtocol {
         self.collection = collection
     }
     
-    func alarmAdd() {
-        self.collection.reloadData()
+    func update() {
+        self.collection.reloadData();
     }
     
     func alarmRemove(index: Int) {

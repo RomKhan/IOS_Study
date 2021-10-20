@@ -30,12 +30,6 @@ class TableViewController: UIViewController, AlarmViewControllerProtocol {
         self.table = table
     }
     
-    func alarmAdd() {
-        table.beginUpdates()
-        table.insertRows(at: [IndexPath.init(row: alarmMenadger.getAlarmsCount()-1, section: 0)], with: .automatic)
-        table.endUpdates()
-    }
-    
     func alarmRemove(index: Int) {
         self.table.beginUpdates()
         let cellOptional = table.cellForRow(at: IndexPath(row: index, section: 0)) as? AlarmCell
@@ -44,6 +38,10 @@ class TableViewController: UIViewController, AlarmViewControllerProtocol {
             table.deleteRows(at: [IndexPath(row: index, section: 0)], with: .bottom)
         }
         self.table.endUpdates()
+    }
+    
+    func update() {
+        self.table.reloadData();
     }
 }
 

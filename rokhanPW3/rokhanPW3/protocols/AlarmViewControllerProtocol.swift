@@ -2,6 +2,6 @@ import Foundation
 
 protocol AlarmViewControllerProtocol : AnyObject, AlarmInterfaceContains {
     var alarmMenadger: AlarmMenadger! {get set}
-    func alarmAdd()
+    func update()
     func alarmRemove(index: Int)
 }

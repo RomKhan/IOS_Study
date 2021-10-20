@@ -37,6 +37,12 @@ class AlarmMenadger {
     func loadFromDataBase() {
         do {
             alarmModels = try context.fetch(AlarmEntity.fetchRequest()) as [AlarmEntity]
+            alarmModels.sort(by: {(x: AlarmEntity, y: AlarmEntity) -> Bool in
+                if (x.hours * 60 + x.minutes < y.hours * 60 + y.minutes) {
+                    return true
+                }
+                return false
+            })
         }
         catch {
             alarmModels = []
@@ -92,13 +98,20 @@ class AlarmMenadger {
     /// Метода добавления будильника вместе с обновлением контроллеров.
     func alarmAddAndReloadContollers(_ hours: Int, _ minutes: Int, _ name: String, _ isActive: Bool) {
         addAlarm(hours: hours, minutes: minutes, name: name, isActive: isActive)
+        alarmModels.sort(by: {(x: AlarmEntity, y: AlarmEntity) -> Bool in
+            if (x.hours * 60 + x.minutes < y.hours * 60 + y.minutes) {
+                return true
+            }
+            return false
+        })
         
         guard let viewControllers = controllers else {return}
         
         for viewController in viewControllers {
-            viewController.alarmAdd()
+            viewController.update()
         }
     }
+    
     
     /// Обычный метод добавления будильников.
     func addAlarm(hours: Int, minutes: Int, name: String, isActive: Bool) {

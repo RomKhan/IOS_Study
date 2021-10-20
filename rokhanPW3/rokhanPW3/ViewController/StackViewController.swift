@@ -19,13 +19,14 @@ class StackViewController: UIViewController, AlarmViewControllerProtocol {
         )
     }
     
-    func alarmAdd() {
-        let view = AlarmView()
-        alarmMenadger.linkViewWithAlarm(view: view)
-        stackView.addArrangedSubview(view)
+    func update() {
+        for subview in stackView.arrangedSubviews {
+            subview.removeFromSuperview()
+        }
+        generateAlarms();
         scroll.contentSize = CGSize(
             width: self.view.frame.width,
-            height: stackView.frame.height + 70
+            height: stackView.frame.height + 60
         )
     }
     
