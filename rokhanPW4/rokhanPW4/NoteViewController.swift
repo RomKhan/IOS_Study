@@ -21,10 +21,13 @@ class NoteViewController : UIViewController {
     @objc
     func didTabSaveNote(button: UIBarButtonItem) {
         let title = textField.text ?? ""
-        let description = textView.text ?? ""
+        let descriptionText = textView.text ?? ""
         if !title.isEmpty {
-        let newNote = Note(title: title, description: description)
-            outputViewController.notes.append(newNote)
+            let newNote = Note(context: outputViewController.context)
+            newNote.title = title
+            newNote.descriptionText = descriptionText as String
+            newNote.creationDate = Date()
+            outputViewController.saveChanges()
         }
         self.navigationController?.popViewController(animated: true)
     }

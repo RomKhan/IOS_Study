@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     @IBOutlet weak var collectionLable: UILabel!
@@ -16,6 +17,15 @@ class ViewController: UIViewController {
             collectionView.insertItems(at: [IndexPath(row: notes.count - 1, section: 0)])
         }
     }
+    let context: NSManagedObjectContext = {
+        let container = NSPersistentContainer(name: "CoreDataNotes")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+        fatalError("Container loading failed")
+            }
+        }
+        return container.viewContext
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +34,26 @@ class ViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNote))
         navigationController?.navigationBar.tintColor = .red
+        self.loadData()
+    }
+    
+    func saveChanges() {
+        if context.hasChanges {
+            try? context.save()
+        }
+        if let notes = try? context.fetch(Note.fetchRequest()) as? [Note] {
+            self.notes = notes
+        } else {
+            self.notes = []
+        }
+    }
+    
+    func loadData() {
+        if let notes = try? context.fetch(Note.fetchRequest()) as [Note] {
+            self.notes = notes.sorted(by: {$0.creationDate.compare($1.creationDate) == .orderedDescending})
+        } else {
+            self.notes = []
+        }
     }
     
     @objc
@@ -49,7 +79,7 @@ extension ViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoteCell", for: indexPath) as! NoteCell
         cell.titleLable.text = notes[indexPath.row].title
-        cell.descriptionLable.text = notes[indexPath.row].description
+        cell.descriptionLable.text = notes[indexPath.row].descriptionText
         cell.setup()
         cell.setShadow()
         return cell

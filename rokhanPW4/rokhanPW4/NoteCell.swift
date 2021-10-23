@@ -49,32 +49,6 @@ class NoteCell: UICollectionViewCell {
         layer.backgroundColor = UIColor.clear.cgColor
     }
     
-    func getRandomColor() -> UIColor {
-        let x = Int.random(in: 0...8)
-        switch x {
-        case 0:
-            return UIColor.systemRed
-        case 1:
-            return UIColor.systemOrange
-        case 2:
-            return UIColor.systemYellow
-        case 3:
-            return UIColor.systemGreen
-        case 4:
-            return UIColor.systemBlue
-        case 5:
-            return UIColor.systemPurple
-        case 6:
-            return UIColor.systemPink
-        case 7:
-            return UIColor.systemTeal
-        case 8:
-            return UIColor.black
-        default:
-            return UIColor.lightGray
-        }
-    }
-    
     override func systemLayoutSizeFitting(
             _ targetSize: CGSize,
             withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
