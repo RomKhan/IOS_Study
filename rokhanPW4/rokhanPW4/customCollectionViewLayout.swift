@@ -1,5 +1,8 @@
 import UIKit
 
+/// Скажу честно - нашел этот код в интернете
+/// По сути, здесь задаются настройки для кастомного layout'а.
+/// Необходимость данного класса возникла для того, чтобы ячейки меняли размер динамически при перевороте экрана.
 class AutoInvalidatingLayout: UICollectionViewFlowLayout {
 
     // Compute the width of a full width cell

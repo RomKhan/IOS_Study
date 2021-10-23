@@ -50,6 +50,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		15391CBD2724CEDE002BDC22 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				15832A042721DCE4007F8FBE /* AppDelegate.swift */,
+				15832A062721DCE4007F8FBE /* SceneDelegate.swift */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		15391CBE2724CF0E002BDC22 /* vc */ = {
+			isa = PBXGroup;
+			children = (
+				15832A082721DCE4007F8FBE /* ViewController.swift */,
+				15E4A2FD2723AD97003A05B1 /* NoteViewController.swift */,
+			);
+			path = vc;
+			sourceTree = "<group>";
+		};
 		158329F82721DCE4007F8FBE = {
 			isa = PBXGroup;
 			children = (
@@ -69,10 +87,9 @@
 		15832A032721DCE4007F8FBE /* rokhanPW4 */ = {
 			isa = PBXGroup;
 			children = (
+				15391CBE2724CF0E002BDC22 /* vc */,
 				15E4A3082723C825003A05B1 /* model */,
-				15832A042721DCE4007F8FBE /* AppDelegate.swift */,
-				15832A062721DCE4007F8FBE /* SceneDelegate.swift */,
-				15832A082721DCE4007F8FBE /* ViewController.swift */,
+				15391CBD2724CEDE002BDC22 /* app */,
 				15832A102721DCE5007F8FBE /* Assets.xcassets */,
 				15832A122721DCE5007F8FBE /* LaunchScreen.storyboard */,
 				15832A152721DCE5007F8FBE /* Info.plist */,
@@ -80,7 +97,6 @@
 				15391CB927249DE0002BDC22 /* CoreDataNotes.xcdatamodeld */,
 				15832A1D27221AAA007F8FBE /* NoteCell.swift */,
 				15832A0A2721DCE4007F8FBE /* Main.storyboard */,
-				15E4A2FD2723AD97003A05B1 /* NoteViewController.swift */,
 			);
 			path = rokhanPW4;
 			sourceTree = "<group>";

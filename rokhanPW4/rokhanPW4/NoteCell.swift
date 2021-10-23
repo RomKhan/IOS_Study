@@ -13,15 +13,24 @@ class NoteCell: UICollectionViewCell {
     @IBOutlet weak var showButton: UIButton!
     @IBOutlet weak var showButtonHeightConstrain: NSLayoutConstraint!
     @IBOutlet weak var statusIndicator: UIView!
+    
+    // Функция, которая выполняется при нажании на кнопку (...)
+    // С помощью нее идет запрос главному контроллеру показать все содержимое заметки.
     private var showFullDescription: ((Int) -> ())?
+    
+    // id Понадобился, чтобы идентифицировать ячейку при вызове showFullDescription.
+    // Тк номер строки в collectionview соотносится с индексом модели в массиве,
+    // по id можно определить модель, которая относиться к данному view
     private var id: Int!
     private var isReuse = false
     private var showMode: Bool = false
     
+    /// Помогает предовтратить повторные выполнения ряда ненужных настроек.
     override func prepareForReuse() {
         isReuse = true
     }
     
+    /// Настройки ячейки.
     func setup(row: Int, showCellAction: @escaping (Int) -> ()) {
         if !isReuse {
             descriptionLable.layoutSubviews()
@@ -38,6 +47,7 @@ class NoteCell: UICollectionViewCell {
         setShadow()
     }
     
+    /// Устанавливает цвет индикатора статуса в соответсвии со статусом заметки.
     func setStatusColor(colorType: Int) {
         switch colorType {
         case 0:
@@ -53,6 +63,10 @@ class NoteCell: UICollectionViewCell {
             return
         }
     }
+    
+    /// Устанавливает тени superview.
+    /// К сожалению, эта штука нормально не работала при переиспользвании,
+    /// поэтому приходится вызывать ее каждый раз заново.
     private func setShadow() {
         contentView.layer.cornerRadius = 15
         contentView.layer.borderWidth = 1.0
@@ -66,6 +80,7 @@ class NoteCell: UICollectionViewCell {
         layer.backgroundColor = UIColor.clear.cgColor
     }
     
+    /// По идеи, этот метод помогает разобраться с динамическим размером, но у меня так и не получилось все нормально настроить.
     override func systemLayoutSizeFitting(
             _ targetSize: CGSize,
             withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
@@ -93,6 +108,7 @@ class NoteCell: UICollectionViewCell {
         return size
         }
     
+    /// Запрос viewController'у показать полное описание заметки.
     @objc
     func showFullDescription(sender: Any?) {
         showFullDescription?(id)

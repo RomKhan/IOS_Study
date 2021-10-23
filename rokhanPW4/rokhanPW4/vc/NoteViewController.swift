@@ -31,6 +31,7 @@ class NoteViewController : UIViewController {
         statusSelector.selectRow(Int(model?.status ?? 1), inComponent: 0, animated: true)
     }
     
+    /// Создание новой заметки или/и выход (зависит от режима работы).
     @objc
     func didTabSaveNote(button: UIBarButtonItem) {
         if (model == nil) {

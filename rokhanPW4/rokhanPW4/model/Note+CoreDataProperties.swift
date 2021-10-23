@@ -9,7 +9,8 @@
 import Foundation
 import CoreData
 
-
+/// Core Data model
+/// Пункты 8 и 9 реализованы.
 extension Note {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Note> {

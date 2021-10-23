@@ -11,12 +11,16 @@ import CoreData
 class ViewController: UIViewController {
     @IBOutlet weak var collectionLable: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    /// Массив моделей.
     var notes: [Note] = [] {
         didSet {
             collectionLable.isHidden = true
             collectionView.insertItems(at: [IndexPath(row: notes.count - 1, section: 0)])
         }
     }
+    
+    /// Контекст текущей модели.
     let context: NSManagedObjectContext = {
         let container = NSPersistentContainer(name: "CoreDataNotes")
         container.loadPersistentStores { _, error in
@@ -32,11 +36,13 @@ class ViewController: UIViewController {
         collectionView.contentInset = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
         collectionView.collectionViewLayout = AutoInvalidatingLayout()
         
+        /// Установка кнопки добавления заметки и ее настройка.
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNote))
         navigationController?.navigationBar.tintColor = .red
         self.loadData()
     }
     
+    /// Сохраниение контеста для кордаты.
     func saveChanges() {
         if context.hasChanges {
             try? context.save()
@@ -48,6 +54,7 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Загрузка данных из кордаты.
     func loadData() {
         if let notes = try? context.fetch(Note.fetchRequest()) as [Note] {
             self.notes = notes.sorted(by: {$0.creationDate.compare($1.creationDate) == .orderedDescending})
@@ -56,11 +63,13 @@ class ViewController: UIViewController {
         }
     }
     
+    /// Перезагрузка одной ячейки (используется для отрисовки статуса).
     func reloadCell(at row: Int) {
         if row == -1 {return}
         collectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
     }
     
+    /// Запуск окна с добавлением заметки и ее добавление в коллекшн.
     @objc
     func createNote() {
         guard let viewController = storyboard?.instantiateViewController(identifier: "NoteViewController") as? NoteViewController else {
@@ -70,6 +79,7 @@ class ViewController: UIViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
+    /// Метод запускает экран, который полностью показывает описание заметки (также позволяет менять статус).
     func showFullDescription(index: Int) {
         guard let viewController = storyboard?.instantiateViewController(identifier: "NoteViewController") as? NoteViewController else {
             return
