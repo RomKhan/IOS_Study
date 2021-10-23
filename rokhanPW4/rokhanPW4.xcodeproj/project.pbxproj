@@ -17,6 +17,7 @@
 		15832A1C27220C5C007F8FBE /* customCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832A1B27220C5C007F8FBE /* customCollectionViewLayout.swift */; };
 		15832A1E27221AAA007F8FBE /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15832A1D27221AAA007F8FBE /* NoteCell.swift */; };
 		15E4A2FE2723AD97003A05B1 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4A2FD2723AD97003A05B1 /* NoteViewController.swift */; };
+		15E4A3002723B68B003A05B1 /* NoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15E4A2FF2723B68B003A05B1 /* NoteModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		15832A1B27220C5C007F8FBE /* customCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customCollectionViewLayout.swift; sourceTree = "<group>"; };
 		15832A1D27221AAA007F8FBE /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		15E4A2FD2723AD97003A05B1 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
+		15E4A2FF2723B68B003A05B1 /* NoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				15832A1D27221AAA007F8FBE /* NoteCell.swift */,
 				15832A0A2721DCE4007F8FBE /* Main.storyboard */,
 				15E4A2FD2723AD97003A05B1 /* NoteViewController.swift */,
+				15E4A2FF2723B68B003A05B1 /* NoteModel.swift */,
 			);
 			path = rokhanPW4;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15E4A2FE2723AD97003A05B1 /* NoteViewController.swift in Sources */,
+				15E4A3002723B68B003A05B1 /* NoteModel.swift in Sources */,
 				15832A0F2721DCE4007F8FBE /* rokhanPW4.xcdatamodeld in Sources */,
 				15832A092721DCE4007F8FBE /* ViewController.swift in Sources */,
 				15832A052721DCE4007F8FBE /* AppDelegate.swift in Sources */,
