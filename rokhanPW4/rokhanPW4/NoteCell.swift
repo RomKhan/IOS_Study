@@ -12,7 +12,7 @@ class NoteCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLable: UILabel!
     @IBOutlet weak var showButton: UIButton!
     @IBOutlet weak var showButtonHeightConstrain: NSLayoutConstraint!
-    private var updateMeAction: ((Int, Bool) -> ())?
+    private var showFullDescription: ((Int) -> ())?
     private var id: Int!
     private var isReuse = false
     private var showMode: Bool = false
@@ -21,11 +21,7 @@ class NoteCell: UICollectionViewCell {
         isReuse = true
     }
     
-    func SetData(row: Int, updateCellAction: @escaping (Int, Bool) -> ()) {
-        id = row
-    }
-    
-    func setup() {
+    func setup(row: Int, showCellAction: @escaping (Int) -> ()) {
         if !isReuse {
             descriptionLable.layoutSubviews()
             descriptionLable.setContentCompressionResistancePriority(.required, for: .vertical)
@@ -34,9 +30,13 @@ class NoteCell: UICollectionViewCell {
             showButton.addTarget(self, action: #selector(showFullDescription(sender:)), for: .touchDown)
             showButtonHeightConstrain.constant = 0
         }
+        
+        id = row
+        showFullDescription = showCellAction
+        setShadow()
     }
     
-    func setShadow() {
+    private func setShadow() {
         contentView.layer.cornerRadius = 15
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor.clear.cgColor
@@ -78,6 +78,6 @@ class NoteCell: UICollectionViewCell {
     
     @objc
     func showFullDescription(sender: Any?) {
-        
+        showFullDescription?(id)
     }
 }

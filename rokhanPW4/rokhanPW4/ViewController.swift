@@ -64,6 +64,14 @@ class ViewController: UIViewController {
         viewController.outputViewController = self
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    func showFullDescription(index: Int) {
+        guard let viewController = storyboard?.instantiateViewController(identifier: "NoteViewController") as? NoteViewController else {
+            return
+        }
+        viewController.model = notes[index]
+        present(viewController, animated: true, completion: nil)
+    }
 }
 
 extension ViewController : UICollectionViewDelegate {
@@ -94,8 +102,7 @@ extension ViewController : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoteCell", for: indexPath) as! NoteCell
         cell.titleLable.text = notes[indexPath.row].title
         cell.descriptionLable.text = notes[indexPath.row].descriptionText
-        cell.setup()
-        cell.setShadow()
+        cell.setup(row: indexPath.row, showCellAction: showFullDescription)
         return cell
     }
 }
