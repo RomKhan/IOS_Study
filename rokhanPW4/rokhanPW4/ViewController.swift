@@ -56,6 +56,11 @@ class ViewController: UIViewController {
         }
     }
     
+    func reloadCell(at row: Int) {
+        if row == -1 {return}
+        collectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
+    }
+    
     @objc
     func createNote() {
         guard let viewController = storyboard?.instantiateViewController(identifier: "NoteViewController") as? NoteViewController else {
@@ -70,6 +75,8 @@ class ViewController: UIViewController {
             return
         }
         viewController.model = notes[index]
+        viewController.outputViewController = self
+        viewController.id = index
         present(viewController, animated: true, completion: nil)
     }
 }
@@ -102,6 +109,7 @@ extension ViewController : UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoteCell", for: indexPath) as! NoteCell
         cell.titleLable.text = notes[indexPath.row].title
         cell.descriptionLable.text = notes[indexPath.row].descriptionText
+        cell.setStatusColor(colorType: Int(notes[indexPath.row].status))
         cell.setup(row: indexPath.row, showCellAction: showFullDescription)
         return cell
     }

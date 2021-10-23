@@ -6,8 +6,14 @@
         <attribute name="status" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="relationship" inverseEntity="Note"/>
+        <relationship name="statusRelationShip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Status" inverseName="relationship" inverseEntity="Status"/>
+    </entity>
+    <entity name="Status" representedClassName="Status" syncable="YES" codeGenerationType="class">
+        <attribute name="statusInager" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Note" inverseName="statusRelationShip" inverseEntity="Note"/>
     </entity>
     <elements>
-        <element name="Note" positionX="-63" positionY="-18" width="192.3046875" height="104"/>
+        <element name="Note" positionX="-63" positionY="-18" width="192.3046875" height="119"/>
+        <element name="Status" positionX="-18" positionY="36" width="128" height="59"/>
     </elements>
 </model>

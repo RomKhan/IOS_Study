@@ -1,6 +1,7 @@
 import UIKit
 
 class AutoInvalidatingLayout: UICollectionViewFlowLayout {
+
     // Compute the width of a full width cell
     // for a given bounds
     func widestCellWidth(bounds: CGRect) -> CGFloat {
@@ -30,8 +31,8 @@ class AutoInvalidatingLayout: UICollectionViewFlowLayout {
     // the first time a collectionView is assigned
     override func prepare() {
         super.prepare()
-
         let bounds = collectionView?.bounds ?? .zero
+        
         updateEstimatedItemSize(bounds: bounds)
     }
     
@@ -50,4 +51,5 @@ class AutoInvalidatingLayout: UICollectionViewFlowLayout {
         updateEstimatedItemSize(bounds: newBounds)
         return true
     }
+    
 }

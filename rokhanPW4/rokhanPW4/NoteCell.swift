@@ -12,6 +12,7 @@ class NoteCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLable: UILabel!
     @IBOutlet weak var showButton: UIButton!
     @IBOutlet weak var showButtonHeightConstrain: NSLayoutConstraint!
+    @IBOutlet weak var statusIndicator: UIView!
     private var showFullDescription: ((Int) -> ())?
     private var id: Int!
     private var isReuse = false
@@ -29,6 +30,7 @@ class NoteCell: UICollectionViewCell {
             showButton.backgroundColor = UIColor.systemGray6
             showButton.addTarget(self, action: #selector(showFullDescription(sender:)), for: .touchDown)
             showButtonHeightConstrain.constant = 0
+            statusIndicator.layer.cornerRadius = 7
         }
         
         id = row
@@ -36,6 +38,21 @@ class NoteCell: UICollectionViewCell {
         setShadow()
     }
     
+    func setStatusColor(colorType: Int) {
+        switch colorType {
+        case 0:
+            statusIndicator.backgroundColor = UIColor.systemGreen
+            return
+        case 1:
+            statusIndicator.backgroundColor = UIColor.systemBlue
+            return
+        case 2:
+            statusIndicator.backgroundColor = UIColor.systemOrange
+            return
+        default:
+            return
+        }
+    }
     private func setShadow() {
         contentView.layer.cornerRadius = 15
         contentView.layer.borderWidth = 1.0
@@ -53,7 +70,7 @@ class NoteCell: UICollectionViewCell {
             _ targetSize: CGSize,
             withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority,
             verticalFittingPriority: UILayoutPriority) -> CGSize {
-        
+
             // Replace the height in the target size to
             // allow the cell to flexibly compute its height
             var targetSize = targetSize
@@ -62,7 +79,7 @@ class NoteCell: UICollectionViewCell {
         if descriptionLable.bounds.size.width < descriptionLable.intrinsicContentSize.width || showMode {
             showButtonHeightConstrain.constant = 30
         }
-        
+
             // The .required horizontal fitting priority means
             // the desired cell width (targetSize.width) will be
             // preserved. However, the vertical fitting priority is
@@ -73,7 +90,7 @@ class NoteCell: UICollectionViewCell {
                 withHorizontalFittingPriority: .required,
                 verticalFittingPriority: .fittingSizeLevel
             )
-            return size
+        return size
         }
     
     @objc

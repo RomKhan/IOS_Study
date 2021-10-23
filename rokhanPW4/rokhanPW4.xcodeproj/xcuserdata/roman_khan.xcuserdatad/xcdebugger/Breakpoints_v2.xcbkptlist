@@ -9,13 +9,14 @@
          <BreakpointContent
             uuid = "C274E12F-C068-4805-BE70-9FEE484E7F4C"
             shouldBeEnabled = "No"
+            condition = "size.height &gt;= 1000"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rokhanPW4/NoteCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "systemLayoutSizeFitting(_:withHorizontalFittingPriority:verticalFittingPriority:)"
             landmarkType = "7">
             <Actions>
@@ -70,8 +71,8 @@
             filePath = "rokhanPW4/NoteCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "systemLayoutSizeFitting(_:withHorizontalFittingPriority:verticalFittingPriority:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -87,8 +88,8 @@
             filePath = "rokhanPW4/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -103,8 +104,8 @@
             filePath = "rokhanPW4/NoteCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "92"
+            endingLineNumber = "92"
             landmarkName = "systemLayoutSizeFitting(_:withHorizontalFittingPriority:verticalFittingPriority:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -119,8 +120,8 @@
             filePath = "rokhanPW4/NoteCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "setShadow()"
             landmarkType = "7">
          </BreakpointContent>
@@ -135,8 +136,8 @@
             filePath = "rokhanPW4/NoteCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "setShadow()"
             landmarkType = "7">
          </BreakpointContent>
@@ -151,8 +152,8 @@
             filePath = "rokhanPW4/NoteViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "didTabSaveNote(button:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -160,16 +161,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3E0001CD-463A-4EA3-BCC5-D539B55E9A4E"
+            uuid = "925A3313-75FC-4C7A-9FC5-930B2E3E04C1"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "rokhanPW4/NoteViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "didTabSaveNote(button:)"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "pickerView(_:didSelectRow:inComponent:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

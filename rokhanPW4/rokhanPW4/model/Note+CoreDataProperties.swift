@@ -19,6 +19,7 @@ extension Note {
     @NSManaged public var creationDate: Date
     @NSManaged public var descriptionText: String?
     @NSManaged public var title: String?
+    @NSManaged public var status: Int32
     @NSManaged public var relationship: Note?
 
 }
