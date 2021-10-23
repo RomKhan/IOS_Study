@@ -13,17 +13,26 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.contentInset = UIEdgeInsets(top: 15, left: 30, bottom: 15, right: 30)
         collectionView.collectionViewLayout = AutoInvalidatingLayout()
+        collectionLable.isHidden = true
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNote))
+        navigationController?.navigationBar.tintColor = .red
     }
     
-    func updateConstrain () {
-        
+    @objc
+    func createNote() {
+        guard let viewController = storyboard?.instantiateViewController(identifier: "NoteViewController") else {
+            return
+        }
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
 extension ViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 100
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -33,10 +42,10 @@ extension ViewController : UICollectionViewDelegate {
 extension ViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoteCell", for: indexPath) as! NoteCell
-        cell.titleLable.text = "Yeah"
-        cell.descriptionLable.text = "That's greate"
+        cell.titleLable.text = "Yeah fsdfsfdsfsdsfsfdsfsdfsdfsdfsffsdfsfdsfsdsfsfdsfsdfsdfsdfsffsdfsfdsfsdsfsfdsfsdfsdfsdfsf"
+        cell.descriptionLable.text = "That's greate fsdfsfdsfsdsfsfdsfsdfsdfsdfsffsdfsfdsfsdsfsfdsfsdfsdfsdfsffsdfsfdsfsdsfsfdsfsdfsdfsdfsffsdfsfdsfsdsfsfdsfsdfsdfsdfsffsdfsfdsfsdsfsfdsfsdfsdfsdfsf"
         cell.setup()
-       return cell
+        return cell
     }
 }
 
