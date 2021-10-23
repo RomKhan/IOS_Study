@@ -33,8 +33,6 @@ class AutoInvalidatingLayout: UICollectionViewFlowLayout {
 
         let bounds = collectionView?.bounds ?? .zero
         updateEstimatedItemSize(bounds: bounds)
-        minimumLineSpacing = 10
-        
     }
     
     // If the current collectionView bounds.size does

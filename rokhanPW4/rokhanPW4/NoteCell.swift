@@ -34,16 +34,18 @@ class NoteCell: UICollectionViewCell {
             showButton.addTarget(self, action: #selector(showFullDescription(sender:)), for: .touchDown)
             showButtonHeightConstrain.constant = 0
         }
+    }
+    
+    func setShadow() {
         contentView.layer.cornerRadius = 15
         contentView.layer.borderWidth = 1.0
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.masksToBounds = true
         layer.shadowColor = UIColor.lightGray.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowRadius = 6.0
         layer.shadowOpacity = 1.0
         layer.masksToBounds = false
-        layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: contentView.layer.cornerRadius).cgPath
         layer.backgroundColor = UIColor.clear.cgColor
     }
     
@@ -82,7 +84,7 @@ class NoteCell: UICollectionViewCell {
             // allow the cell to flexibly compute its height
             var targetSize = targetSize
             targetSize.height = CGFloat.greatestFiniteMagnitude
-            
+        
         if descriptionLable.bounds.size.width < descriptionLable.intrinsicContentSize.width || showMode {
             showButtonHeightConstrain.constant = 30
         }
@@ -99,15 +101,6 @@ class NoteCell: UICollectionViewCell {
             )
             return size
         }
-    
-//    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-//        let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
-//        layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
-//        if descriptionLable.bounds.size.width < descriptionLable.intrinsicContentSize.width || showMode {
-//            showButtonHeightConstrain.constant = 30
-//        }
-//        return layoutAttributes
-//    }
     
     @objc
     func showFullDescription(sender: Any?) {
