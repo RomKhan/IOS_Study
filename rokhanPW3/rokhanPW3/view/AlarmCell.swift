@@ -2,7 +2,7 @@ import UIKit
 
 class AlarmCell : UITableViewCell {
 
-    var view: AlarmView!
+    var view: AlarmViewWithDelete!
     
     override func prepareForReuse() {
         if view.isHidden == true {
@@ -18,7 +18,7 @@ class AlarmCell : UITableViewCell {
     }
     
     private func setupView() {
-        view = AlarmView()
+        view = AlarmViewWithDelete()
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.topAnchor.constraint(equalTo: topAnchor).isActive = true

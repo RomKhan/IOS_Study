@@ -31,13 +31,7 @@ class TableViewController: UIViewController, AlarmViewControllerProtocol {
     }
     
     func alarmRemove(index: Int) {
-        self.table.beginUpdates()
-        let cellOptional = table.cellForRow(at: IndexPath(row: index, section: 0)) as? AlarmCell
-        if let cell = cellOptional {
-            cell.view.hide()
-            table.deleteRows(at: [IndexPath(row: index, section: 0)], with: .bottom)
-        }
-        self.table.endUpdates()
+        self.table.reloadData();
     }
     
     func update() {

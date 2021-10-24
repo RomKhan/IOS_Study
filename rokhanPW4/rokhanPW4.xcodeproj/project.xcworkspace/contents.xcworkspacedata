@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/roman_khan/Desktop/&#x41f;&#x440;&#x43e;&#x433;&#x430;/IOS &#x41d;&#x418;&#x421;/rokhanPW4/rokhanPW4/CoreDataNotes.xcdatamodeld">
-   </FileRef>
-   <FileRef
       location = "self:">
    </FileRef>
 </Workspace>

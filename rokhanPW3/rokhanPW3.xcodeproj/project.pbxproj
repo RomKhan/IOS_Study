@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1502FC6C270F335000FA97E9 /* AlarmViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1502FC6B270F335000FA97E9 /* AlarmViewControllerProtocol.swift */; };
 		1502FC6E270FBB0000FA97E9 /* AlarmCellCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1502FC6D270FBB0000FA97E9 /* AlarmCellCollection.swift */; };
+		152BE8FE2725E74500FBAA66 /* AlarmViewWithDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152BE8FD2725E74500FBAA66 /* AlarmViewWithDelete.swift */; };
 		153683F9270E2F340088DBF1 /* AlarmMenadger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153683F8270E2F340088DBF1 /* AlarmMenadger.swift */; };
 		1541D322271343E00047F81F /* alarm-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1541D321271343E00047F81F /* alarm-2.png */; };
 		1541D3292713725A0047F81F /* AlarmEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1541D3272713725A0047F81F /* AlarmEntity+CoreDataClass.swift */; };
@@ -33,6 +34,7 @@
 /* Begin PBXFileReference section */
 		1502FC6B270F335000FA97E9 /* AlarmViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewControllerProtocol.swift; sourceTree = "<group>"; };
 		1502FC6D270FBB0000FA97E9 /* AlarmCellCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCellCollection.swift; sourceTree = "<group>"; };
+		152BE8FD2725E74500FBAA66 /* AlarmViewWithDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewWithDelete.swift; sourceTree = "<group>"; };
 		153683F8270E2F340088DBF1 /* AlarmMenadger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmMenadger.swift; sourceTree = "<group>"; };
 		1541D321271343E00047F81F /* alarm-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alarm-2.png"; sourceTree = "<group>"; };
 		1541D3272713725A0047F81F /* AlarmEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlarmEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				154A29FC270D0E5E006F26EA /* EyeCell.swift */,
 				154A29FE270D46E5006F26EA /* AlarmCell.swift */,
 				1502FC6D270FBB0000FA97E9 /* AlarmCellCollection.swift */,
+				152BE8FD2725E74500FBAA66 /* AlarmViewWithDelete.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			files = (
 				153683F9270E2F340088DBF1 /* AlarmMenadger.swift in Sources */,
 				1502FC6C270F335000FA97E9 /* AlarmViewControllerProtocol.swift in Sources */,
+				152BE8FE2725E74500FBAA66 /* AlarmViewWithDelete.swift in Sources */,
 				156357F92712A01400A0811C /* DataBase.xcdatamodeld in Sources */,
 				15655EBF270BCAE100266052 /* StackViewController.swift in Sources */,
 				15655EAB270BC62300266052 /* AppDelegate.swift in Sources */,

@@ -18,6 +18,8 @@ class CollectionViewController: UIViewController, AlarmViewControllerProtocol {
         layoutFlow.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layoutFlow.itemSize = CGSize(width: view.frame.width, height: 60)
         layoutFlow.minimumLineSpacing = 0
+        layoutFlow.minimumInteritemSpacing = 0
+        layoutFlow.scrollDirection = .horizontal
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layoutFlow)
         view.addSubview(collection)
         collection.translatesAutoresizingMaskIntoConstraints = false
@@ -30,6 +32,7 @@ class CollectionViewController: UIViewController, AlarmViewControllerProtocol {
         collection.dataSource = self
         collection.delegate = self
         collection.backgroundColor = UIColor(white: 1, alpha: 0)
+        collection.isPagingEnabled = true
         self.collection = collection
     }
     
@@ -38,11 +41,7 @@ class CollectionViewController: UIViewController, AlarmViewControllerProtocol {
     }
     
     func alarmRemove(index: Int) {
-        let cellOptional = self.collection.cellForItem(at: IndexPath(row: index, section: 0)) as? AlarmCellCollection
-        if let cell = cellOptional {
-            cell.view.hide()
-            collection.deleteItems(at: [IndexPath(row: index, section: 0)])
-        }
+        self.collection.reloadData();
     }
 }
 
@@ -57,6 +56,18 @@ extension CollectionViewController : UICollectionViewDataSource {
             alarmMenadger.viewRetarget(view: alarmCell.view, index: indexPath.row)
         }
         return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let identifier = "\(indexPath.row)" as NSString
+        return UIContextMenuConfiguration(identifier: identifier, previewProvider: .none) { _ in let deleteAction = UIAction(title: "Delete", image:
+                                            UIImage(systemName: "trash"), attributes:
+                                                UIMenuElement.Attributes.destructive) { value in
+            self.alarmMenadger.alarmRemove(index: indexPath.row)
+            }
+            return UIMenu(title: "", image: nil, children: [deleteAction])
+        }
     }
 }
 

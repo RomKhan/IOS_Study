@@ -31,8 +31,8 @@ class StackViewController: UIViewController, AlarmViewControllerProtocol {
     }
     
     func alarmRemove(index: Int) {
-        (stackView.arrangedSubviews[index] as? AlarmView)?.hide()
-        (stackView.arrangedSubviews[index] as? AlarmView)?.isHidden = true
+        (stackView.arrangedSubviews[index] as? AlarmViewWithDelete)?.hide()
+        (stackView.arrangedSubviews[index] as? AlarmViewWithDelete)?.isHidden = true
         stackView.removeArrangedSubview(stackView.arrangedSubviews[index])
         viewDidAppear(true)
     }
@@ -63,10 +63,10 @@ class StackViewController: UIViewController, AlarmViewControllerProtocol {
         generateAlarms()
     }
     
-    /// Генерация и добавление AlarmView в стек.
+    /// Генерация и добавление AlarmViewWithDelete в стек.
     private func generateAlarms() {
         for i in 0..<(alarmMenadger?.getAlarmsCount() ?? 0) {
-            let view = AlarmView()
+            let view = AlarmViewWithDelete()
             alarmMenadger.linkViewWithAlarm(view: view, index: i)
             stackView.addArrangedSubview(view)
         }

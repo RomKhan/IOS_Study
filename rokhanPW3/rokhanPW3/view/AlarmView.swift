@@ -123,15 +123,8 @@ class AlarmView : UIView, UIGestureRecognizerDelegate {
         self.addGestureRecognizer(tapGesture)
     }
     
-    /// Функция позволяет рекогнайзеру захватываеть только горизонтальные движения, чтобы можно было продолжать скролить ячейки.
+    /// Функция позволяет рекогнайзеру не перекрывать рекогнайзер более верхнего уровня.
     override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let panGestureRecognizer = gestureRecognizer as? UIPanGestureRecognizer {
-            let translation = panGestureRecognizer.translation(in: superview)
-            if abs(translation.x) > abs(translation.y) {
-                return true
-            }
-            return false
-        }
         return false
     }
     
