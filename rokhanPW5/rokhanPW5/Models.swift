@@ -8,7 +8,9 @@
 import Foundation
 
 struct ArticleModel {
-    
+    var title: String?
+    var description: String?
+    var imageLink: String?
 }
 
 struct Respone {
