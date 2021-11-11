@@ -12,10 +12,15 @@ class ArticleCell : UITableViewCell {
     private var title = UILabel()
     private var articleDescription = UILabel()
     private var container = UIView()
+    private var shimmer = CAGradientLayer()
     private var changePictureQueue = 0
     var ArticleViewModel: ArticleViewModel? {
         willSet {
-            image.image = UIImage(named: "error-2.png")
+//            image.image = UIImage(named: "error-2.png")
+            image.image = nil
+            shimmer.isHidden = false
+            container.layer.borderColor = UIColor.systemGray3.cgColor
+            container.backgroundColor = .systemGray2
             changePictureQueue += 1
         }
         didSet {
@@ -25,6 +30,9 @@ class ArticleCell : UITableViewCell {
                 if (currentId == self.changePictureQueue) {
                     DispatchQueue.main.async {
                         self.changePictureQueue = 0
+                        self.shimmer.isHidden = true
+                        self.container.layer.borderColor = UIColor.systemRed.cgColor
+                        self.container.backgroundColor = .black
                         UIView.transition(with: self.image,
                                           duration: 0.3,
                                           options: .transitionCrossDissolve,
@@ -56,7 +64,7 @@ class ArticleCell : UITableViewCell {
     
     func setup() {
         let view = UIView()
-        view.backgroundColor = UIColor.systemGray.withAlphaComponent(0.2)
+        view.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
         selectedBackgroundView = view
         backgroundColor = UIColor(white: 1, alpha: 0)
         container.addSubview(image)
@@ -100,5 +108,20 @@ class ArticleCell : UITableViewCell {
         title.layer.shadowOpacity = 0.3
         title.layer.shadowColor = UIColor.systemRed.cgColor
         title.layer.shadowRadius = 2
+        
+        shimmer.colors = [UIColor.clear.cgColor, UIColor(white: 1, alpha: 1).cgColor, UIColor.clear.cgColor]
+        shimmer.locations = [0, 0.5, 1]
+        shimmer.frame = CGRect(x: -70, y: -70, width: 280, height: 280)
+        let angle = 75 * CGFloat.pi / 180
+        shimmer.transform = CATransform3DMakeRotation(angle, 0, 0, 1)
+        container.layer.addSublayer(shimmer)
+        
+        let animation = CABasicAnimation(keyPath: "transform.translation.x")
+        animation.duration = 1.5
+        animation.fromValue = -200
+        animation.byValue = 300
+        animation.repeatCount = Float.infinity
+        
+        shimmer.add(animation, forKey: "some key")
     }
 }

@@ -22,7 +22,7 @@ class ArcticleViewController: UIViewController, ArticleDisplayLogic {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(tableView)
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor(white: 1, alpha: 0.1)
         tableView.register(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
         tableView.showsVerticalScrollIndicator = true
         tableView.delegate = self
