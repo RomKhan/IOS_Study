@@ -18,6 +18,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewController = ArcticleViewController()
         ArticleConfigure.configureScene(vc: viewController)
         let root = UINavigationController(rootViewController: viewController)
+        root.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemYellow]
+        root.navigationBar.isTranslucent = false
+        root.navigationBar.barTintColor = .black
+        root.navigationBar.topItem?.title = "FRESH NEWS"
         window?.rootViewController = root
         window?.makeKeyAndVisible()
         

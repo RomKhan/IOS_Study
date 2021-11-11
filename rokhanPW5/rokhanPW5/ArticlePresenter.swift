@@ -8,14 +8,28 @@
 import UIKit
 
 protocol ArticlePresenterLogic {
-    func presentNews()
+    func presentNews(articles: [ArticleModel])
+    func errorPresentNews()
 }
 
 class ArticlePresenter : ArticlePresenterLogic {
     
-    weak var articleVC: ArcticleViewController?
+    var articleVC: ArticleDisplayLogic?
     
-    func presentNews() {
+    private func getArticleViewModels(articles: [ArticleModel]) -> [ArticleViewModel]{
+        let articlesModels = articles.compactMap { article -> ArticleViewModel in
+            return ArticleViewModel(title: article.title,
+                                    description: article.announce,
+                                    imageURL: article.img?.url)
+        }
+        return articlesModels
+    }
+    
+    func presentNews(articles: [ArticleModel]) {
+        articleVC?.updateCells(articles: getArticleViewModels(articles: articles))
+    }
+    
+    func errorPresentNews() {
         
     }
 }
