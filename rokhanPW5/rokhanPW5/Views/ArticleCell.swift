@@ -7,16 +7,28 @@
 
 import UIKit
 
+/// Класс кстомной ячейки.
 class ArticleCell : UITableViewCell {
+    /// Графическое отображение картинки статьи.
     private var image = UIImageView()
+    /// Графическое отображение заголовока статьи.
     private var title = UILabel()
+    /// Графическое отображение описания статьи.
     private var articleDescription = UILabel()
+    /// Контейнер для картинки статьи.
     private var container = UIView()
+    /// Шимер, который запускается при загрузке фото.
     private var shimmer = CAGradientLayer()
+    /// Количество вызовов данной чейки.
+    /// Так как didSet запускается в другом потоке, нельзя гарантировать,
+    /// то к моменту вызова TableView не решил переиспользваоть эту ячейку еще раз.
+    /// В свзяи с чем понадобилось поле, которое помогло бы это отслеживать.
     private var changePictureQueue = 0
+    
+    /// Свойство, которая устанавливает новую вью модель ячейки.
+    /// Также пригрывается шиммер.
     var ArticleViewModel: ArticleViewModel? {
         willSet {
-//            image.image = UIImage(named: "error-2.png")
             image.image = nil
             shimmer.isHidden = false
             container.layer.borderColor = UIColor.systemGray3.cgColor
@@ -46,6 +58,7 @@ class ArticleCell : UITableViewCell {
         }
     }
     
+    /// Загрузка картинки с сервера.
     private func loadImage(url : URL?) -> UIImage? {
         guard let anwarpedUrl = url, let data = try? Data(contentsOf: anwarpedUrl) else {
             return UIImage(named: "error-2.png")
@@ -62,15 +75,9 @@ class ArticleCell : UITableViewCell {
         fatalError()
     }
     
-    func setup() {
-        let view = UIView()
-        view.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
-        selectedBackgroundView = view
-        backgroundColor = UIColor(white: 1, alpha: 0)
-        container.addSubview(image)
+    /// Настройки описания статьи.
+    fileprivate func ArticleDescriptionSetup() {
         addSubview(articleDescription)
-        addSubview(container)
-        addSubview(title)
         articleDescription.translatesAutoresizingMaskIntoConstraints = false
         articleDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
         articleDescription.leadingAnchor.constraint(equalTo: container.trailingAnchor, constant: 10).isActive = true
@@ -78,24 +85,11 @@ class ArticleCell : UITableViewCell {
         articleDescription.numberOfLines = 3
         articleDescription.font = UIFont.systemFont(ofSize: 14)
         articleDescription.textColor = .red
-        image.contentMode = .scaleAspectFill
-        image.alpha = 0.8
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
-        image.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
-        image.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
-        image.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
-        container.translatesAutoresizingMaskIntoConstraints = false
-        container.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
-        container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
-        container.widthAnchor.constraint(equalTo: container.heightAnchor).isActive = true
-        container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
-        heightAnchor.constraint(equalToConstant: 110).isActive = true
-        container.clipsToBounds = true
-        container.layer.cornerRadius = 15
-        container.backgroundColor = .black
-        container.layer.borderWidth = 2
-        container.layer.borderColor = UIColor.systemRed.cgColor
+    }
+    
+    /// Настройки названия статьи.
+    fileprivate func ArticleTitleSetup() {
+        addSubview(title)
         title.numberOfLines = 2
         title.lineBreakMode = .byTruncatingTail
         title.setContentCompressionResistancePriority(.required, for: .vertical)
@@ -108,7 +102,26 @@ class ArticleCell : UITableViewCell {
         title.layer.shadowOpacity = 0.3
         title.layer.shadowColor = UIColor.systemRed.cgColor
         title.layer.shadowRadius = 2
-        
+    }
+    
+    /// Настройки контейнера для картинки.
+    fileprivate func ContainerSetup() {
+        addSubview(container)
+        container.addSubview(image)
+        container.translatesAutoresizingMaskIntoConstraints = false
+        container.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        container.widthAnchor.constraint(equalTo: container.heightAnchor).isActive = true
+        container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        container.clipsToBounds = true
+        container.layer.cornerRadius = 15
+        container.backgroundColor = .black
+        container.layer.borderWidth = 2
+        container.layer.borderColor = UIColor.systemRed.cgColor
+    }
+    
+    /// Настройка шимера.
+    fileprivate func ShimmerSetup() {
         shimmer.colors = [UIColor.clear.cgColor, UIColor(white: 1, alpha: 1).cgColor, UIColor.clear.cgColor]
         shimmer.locations = [0, 0.5, 1]
         shimmer.frame = CGRect(x: -70, y: -70, width: 280, height: 280)
@@ -123,5 +136,30 @@ class ArticleCell : UITableViewCell {
         animation.repeatCount = Float.infinity
         
         shimmer.add(animation, forKey: "some key")
+    }
+    
+    /// Настройка картинки статьи.
+    fileprivate func ImageSetup() {
+        image.contentMode = .scaleAspectFill
+        image.alpha = 0.8
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.topAnchor.constraint(equalTo: container.topAnchor).isActive = true
+        image.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
+        image.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
+        image.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
+    }
+    
+    /// Полная настройка ячейки.
+    func setup() {
+        let view = UIView()
+        view.backgroundColor = UIColor.systemGray.withAlphaComponent(0.3)
+        selectedBackgroundView = view
+        backgroundColor = UIColor(white: 1, alpha: 0)
+        ContainerSetup()
+        ArticleDescriptionSetup()
+        ImageSetup()
+        ArticleTitleSetup()
+        ShimmerSetup()
+        heightAnchor.constraint(equalToConstant: 110).isActive = true
     }
 }

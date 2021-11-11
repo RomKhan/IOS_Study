@@ -10,6 +10,7 @@ import Foundation
 class ArticleConfigure {
     private init() { }
     
+    /// Настройка сцены статей. 
     static func configureScene(vc: ArcticleViewController) {
         let presenter = ArticlePresenter()
         let interactor = ArticleIntercator()

@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// Модель страницы со статьями.
+/// Используется для парсинга данных с сервера.
 struct ArticlePage: Decodable {
     var news: [ArticleModel]?
     var requestId: String?
@@ -18,6 +20,7 @@ struct ArticlePage: Decodable {
     }
 }
 
+/// Модель статьи.
 struct ArticleModel: Decodable {
     var newsId: Int?
     var title: String?
@@ -35,6 +38,7 @@ struct ImageContainer: Decodable {
     var url: URL?
 }
 
+/// Модель графического предсталвения статьи.
 struct ArticleViewModel {
     var title: String?
     var description: String?

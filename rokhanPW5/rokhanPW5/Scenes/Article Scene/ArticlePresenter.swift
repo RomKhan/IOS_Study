@@ -16,6 +16,7 @@ class ArticlePresenter : ArticlePresenterLogic {
     
     var articleVC: ArticleDisplayLogic?
     
+    /// Парсит переданный массив моделей в массив вью моделей (для отобрадения в контроллере).
     private func getArticleViewModels(articles: [ArticleModel]) -> [ArticleViewModel]{
         let articlesModels = articles.compactMap { article -> ArticleViewModel in
             return ArticleViewModel(title: article.title,
@@ -26,11 +27,13 @@ class ArticlePresenter : ArticlePresenterLogic {
         return articlesModels
     }
     
+    /// Добавляет вью модели в список контроллера.
+    /// Новый ячейки показываются автоматически.
     func presentNews(articles: [ArticleModel]) {
         articleVC?.updateCells(articles: getArticleViewModels(articles: articles))
     }
     
     func errorPresentNews() {
-        
+        print("errorLoad")
     }
 }

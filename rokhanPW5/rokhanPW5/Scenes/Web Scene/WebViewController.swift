@@ -11,6 +11,8 @@ import WebKit
 protocol WebDisplayLogic {
     func loadWebView(url: URL?)
 }
+
+/// Контроллер веб страницы.
 class WebViewController: UIViewController, WebDisplayLogic {
     var webView = WKWebView()
     
@@ -25,6 +27,8 @@ class WebViewController: UIViewController, WebDisplayLogic {
         view.backgroundColor = .black
     }
     
+
+    /// Загрузка веб страницы.
     func loadWebView(url: URL?) {
         guard let urlNotNil = url else { return }
         webView.load(URLRequest(url: urlNotNil))

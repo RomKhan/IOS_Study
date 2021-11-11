@@ -7,7 +7,12 @@
 
 import UIKit
 
-class WebRouter {
+protocol WebRouterLogc {
+    func passDataToWeb(url: URL?)
+}
+
+class WebRouter : WebRouterLogc {
+    
     var vc: WebDisplayLogic?
     
     func passDataToWeb(url: URL?) {

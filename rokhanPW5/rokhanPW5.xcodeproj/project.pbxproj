@@ -14,9 +14,9 @@
 		153FE652273CD59000D73A6C /* error-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 153FE651273CD59000D73A6C /* error-2.png */; };
 		153FE654273CDC9E00D73A6C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FE653273CDC9E00D73A6C /* WebViewController.swift */; };
 		153FE656273CE6E000D73A6C /* WebRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FE655273CE6E000D73A6C /* WebRouter.swift */; };
+		154718CE273D97BE00F94447 /* megaphone-4.png in Resources */ = {isa = PBXBuildFile; fileRef = 154718CD273D97BE00F94447 /* megaphone-4.png */; };
 		1556516D273AAD0500390D54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1556516C273AAD0500390D54 /* AppDelegate.swift */; };
 		1556516F273AAD0500390D54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1556516E273AAD0500390D54 /* SceneDelegate.swift */; };
-		15565177273AAD0500390D54 /* rokhanPW5.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15565175273AAD0500390D54 /* rokhanPW5.xcdatamodeld */; };
 		15565179273AAD0500390D54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 15565178273AAD0500390D54 /* Assets.xcassets */; };
 		15565184273AAF3300390D54 /* ArcticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15565183273AAF3300390D54 /* ArcticleViewController.swift */; };
 		15565186273AB03F00390D54 /* ArticleIntercator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15565185273AB03F00390D54 /* ArticleIntercator.swift */; };
@@ -32,10 +32,10 @@
 		153FE651273CD59000D73A6C /* error-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error-2.png"; sourceTree = "<group>"; };
 		153FE653273CDC9E00D73A6C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		153FE655273CE6E000D73A6C /* WebRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRouter.swift; sourceTree = "<group>"; };
+		154718CD273D97BE00F94447 /* megaphone-4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "megaphone-4.png"; sourceTree = "<group>"; };
 		15565169273AAD0500390D54 /* rokhanPW5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rokhanPW5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1556516C273AAD0500390D54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1556516E273AAD0500390D54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		15565176273AAD0500390D54 /* rokhanPW5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = rokhanPW5.xcdatamodel; sourceTree = "<group>"; };
 		15565178273AAD0500390D54 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1556517D273AAD0500390D54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		15565183273AAF3300390D54 /* ArcticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcticleViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +55,72 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		154718C6273D879B00F94447 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				1556516E273AAD0500390D54 /* SceneDelegate.swift */,
+				1556516C273AAD0500390D54 /* AppDelegate.swift */,
+			);
+			path = app;
+			sourceTree = "<group>";
+		};
+		154718C7273D87BD00F94447 /* Article Scene */ = {
+			isa = PBXGroup;
+			children = (
+				151DDAD3273AC56300DEF602 /* ArticleConfigure.swift */,
+				15565183273AAF3300390D54 /* ArcticleViewController.swift */,
+				15565185273AB03F00390D54 /* ArticleIntercator.swift */,
+				15565187273AB05700390D54 /* ArticlePresenter.swift */,
+				15565189273AB06300390D54 /* ArticleWorker.swift */,
+				151DDACF273ABA2200DEF602 /* ArticleRouter.swift */,
+			);
+			path = "Article Scene";
+			sourceTree = "<group>";
+		};
+		154718C8273D87E500F94447 /* Web Scene */ = {
+			isa = PBXGroup;
+			children = (
+				153FE653273CDC9E00D73A6C /* WebViewController.swift */,
+				153FE655273CE6E000D73A6C /* WebRouter.swift */,
+			);
+			path = "Web Scene";
+			sourceTree = "<group>";
+		};
+		154718C9273D88D300F94447 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				154718C8273D87E500F94447 /* Web Scene */,
+				154718C7273D87BD00F94447 /* Article Scene */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		154718CA273D88F800F94447 /* files */ = {
+			isa = PBXGroup;
+			children = (
+				154718CD273D97BE00F94447 /* megaphone-4.png */,
+				153FE651273CD59000D73A6C /* error-2.png */,
+				15565178273AAD0500390D54 /* Assets.xcassets */,
+			);
+			path = files;
+			sourceTree = "<group>";
+		};
+		154718CB273D891000F94447 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				151DDAD1273AC43100DEF602 /* Models.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		154718CC273D892200F94447 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				151DDAD5273ACB4100DEF602 /* ArticleCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		15565160273AAD0500390D54 = {
 			isa = PBXGroup;
 			children = (
@@ -74,22 +140,12 @@
 		1556516B273AAD0500390D54 /* rokhanPW5 */ = {
 			isa = PBXGroup;
 			children = (
-				1556516C273AAD0500390D54 /* AppDelegate.swift */,
-				1556516E273AAD0500390D54 /* SceneDelegate.swift */,
-				15565178273AAD0500390D54 /* Assets.xcassets */,
 				1556517D273AAD0500390D54 /* Info.plist */,
-				15565175273AAD0500390D54 /* rokhanPW5.xcdatamodeld */,
-				15565183273AAF3300390D54 /* ArcticleViewController.swift */,
-				15565185273AB03F00390D54 /* ArticleIntercator.swift */,
-				15565187273AB05700390D54 /* ArticlePresenter.swift */,
-				15565189273AB06300390D54 /* ArticleWorker.swift */,
-				151DDACF273ABA2200DEF602 /* ArticleRouter.swift */,
-				151DDAD1273AC43100DEF602 /* Models.swift */,
-				151DDAD3273AC56300DEF602 /* ArticleConfigure.swift */,
-				151DDAD5273ACB4100DEF602 /* ArticleCell.swift */,
-				153FE651273CD59000D73A6C /* error-2.png */,
-				153FE653273CDC9E00D73A6C /* WebViewController.swift */,
-				153FE655273CE6E000D73A6C /* WebRouter.swift */,
+				154718CC273D892200F94447 /* Views */,
+				154718CB273D891000F94447 /* Models */,
+				154718CA273D88F800F94447 /* files */,
+				154718C6273D879B00F94447 /* app */,
+				154718C9273D88D300F94447 /* Scenes */,
 			);
 			path = rokhanPW5;
 			sourceTree = "<group>";
@@ -152,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				15565179273AAD0500390D54 /* Assets.xcassets in Resources */,
+				154718CE273D97BE00F94447 /* megaphone-4.png in Resources */,
 				153FE652273CD59000D73A6C /* error-2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -163,7 +220,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				15565177273AAD0500390D54 /* rokhanPW5.xcdatamodeld in Sources */,
 				15565186273AB03F00390D54 /* ArticleIntercator.swift in Sources */,
 				1556516D273AAD0500390D54 /* AppDelegate.swift in Sources */,
 				151DDAD0273ABA2200DEF602 /* ArticleRouter.swift in Sources */,
@@ -358,19 +414,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		15565175273AAD0500390D54 /* rokhanPW5.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				15565176273AAD0500390D54 /* rokhanPW5.xcdatamodel */,
-			);
-			currentVersion = 15565176273AAD0500390D54 /* rokhanPW5.xcdatamodel */;
-			path = rokhanPW5.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 15565161273AAD0500390D54 /* Project object */;
 }

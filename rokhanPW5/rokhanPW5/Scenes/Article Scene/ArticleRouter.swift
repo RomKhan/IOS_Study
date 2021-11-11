@@ -13,13 +13,9 @@ protocol ArticleRouterLogic
     func routeToShareMenu(url: URL?)
 }
 
-protocol ArticleDataPassing
-{
-    
-}
-
-class ArticleRouter: ArticleRouterLogic, ArticleDataPassing {
+class ArticleRouter: ArticleRouterLogic {
     var vc: ArticleDisplayLogic?
+    /// Перенаправление к webViewControllerю
     func routeToWeb(url: URL?) {
         let webVC = WebViewController()
         let webRouter = WebRouter()
@@ -28,6 +24,7 @@ class ArticleRouter: ArticleRouterLogic, ArticleDataPassing {
         vc?.pushControler(vc: webVC)
     }
     
+    /// Перенаправление к share окну.
     func routeToShareMenu(url: URL?) {
         guard let urlIsNotNil = url else { return }
         let shareVC = UIActivityViewController(

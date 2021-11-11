@@ -7,22 +7,26 @@
 
 import UIKit
 
+/// Логика отображения стетей.
 protocol ArticleDisplayLogic {
     func updateCells(articles: [ArticleViewModel])
     func pushControler(vc: UIViewController)
 }
 
+/// Вью контроллер, реализующий логику отображения статей.
+/// Содержит в себе tableview со статьями.
 class ArcticleViewController: UIViewController, ArticleDisplayLogic {
     var interactor: (ArticleBuisnessLogic & ArticleDataStore)?
-    var router: (ArticleRouterLogic & ArticleDataPassing)?
+    var router: ArticleRouterLogic?
     var tableView = UITableView()
     var activityIndicator = UIActivityIndicatorView()
+    
+    /// Массив моделей отображения.
     var articleViewModels: [ArticleViewModel] = []
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    /// Настройка таблицы.
+    fileprivate func TableViewSetup() {
         view.addSubview(tableView)
-        view.backgroundColor = UIColor(white: 1, alpha: 0.1)
         tableView.register(ArticleCell.self, forCellReuseIdentifier: "ArticleCell")
         tableView.showsVerticalScrollIndicator = true
         tableView.delegate = self
@@ -38,6 +42,12 @@ class ArcticleViewController: UIViewController, ArticleDisplayLogic {
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor(white: 1, alpha: 0.1)
+        TableViewSetup()
         
         activityIndicator.color = .systemRed
         activityIndicator.hidesWhenStopped = true
@@ -45,6 +55,8 @@ class ArcticleViewController: UIViewController, ArticleDisplayLogic {
         interactor?.loadFreshNews()
     }
     
+    /// Вызывается при рефреше таблицы.
+    /// Полностью обновляет таблицу (подгружает статьи заново).
     @objc func handleRefreshControl() {
         DispatchQueue.global().async {
             sleep(1)
@@ -57,6 +69,7 @@ class ArcticleViewController: UIViewController, ArticleDisplayLogic {
         }
     }
     
+    /// Обновление таблицы (добавление новых статей).
     func updateCells(articles: [ArticleViewModel]) {
         sleep(1)
         DispatchQueue.main.async {
@@ -71,6 +84,7 @@ class ArcticleViewController: UIViewController, ArticleDisplayLogic {
         }
     }
     
+    /// Показать некий вью контроллер на экране.
     func pushControler(vc: UIViewController) {
         navigationController?.present(vc, animated: true, completion: nil)
     }
@@ -86,10 +100,14 @@ extension ArcticleViewController: UITableViewDelegate {
         return 1
     }
     
+    /// Срабатывает при выборе ячейки.
+    /// Метод запрашивает у роутера перенаправить клиента на новую страницу.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         router?.routeToWeb(url: articleViewModels[indexPath.row].articleURL)
     }
 
+    /// Свайп ячейки справа на лево.
+    /// Здесь пользователю показывается кнопка "Share".
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let action = UIContextualAction(style: .destructive,
@@ -105,10 +123,12 @@ extension ArcticleViewController: UITableViewDelegate {
 }
 
 extension ArcticleViewController: UITableViewDataSource {
+    /// Количество ячеек в секции.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articleViewModels.count
     }
     
+    /// Выдача новой ячейки таблице.
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? ArticleCell
         if (indexPath.row == articleViewModels.count - 1) {

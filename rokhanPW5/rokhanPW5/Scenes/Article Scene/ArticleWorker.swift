@@ -14,10 +14,12 @@ protocol ArticleWorkerLogic {
 class ArticleWorker : ArticleWorkerLogic {
     var interactor: (ArticleBuisnessLogic & ArticleDataStore)?
     
+    /// Текущий url страницы.
     private func getURL(_ rubric: Int, _ pageIndex: Int) -> URL? {
         URL(string: "https://news.myseldon.com/api/Section?rubricId=\(rubric)&pageSize=8&pageIndex=\(pageIndex)")
     }
     
+    /// Подгрузка данных с сервера.
     func fetchNews(_ rubric: Int, _ pageIndex: Int,
                    success: @escaping(ArticlePage) -> (),
                    fail: @escaping() -> ()) {

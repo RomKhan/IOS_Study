@@ -39,6 +39,7 @@ class ArticleIntercator : ArticleBuisnessLogic, ArticleDataStore {
         }
     }
     
+    /// Загрузка новостей в первый раз (либо рефреш).
     func loadFreshNews() {
         articles.removeAll()
         pageNumber = 1
@@ -52,6 +53,7 @@ class ArticleIntercator : ArticleBuisnessLogic, ArticleDataStore {
                           })
     }
     
+    /// Подгрузить еще новости.
     func loadMoreNews() {
         worker?.fetchNews(4, pageNumber,
                           success: { [weak self] page in
