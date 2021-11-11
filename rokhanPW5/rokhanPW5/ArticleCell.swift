@@ -11,7 +11,6 @@ class ArticleCell : UITableViewCell {
     private var image = UIImageView()
     private var title = UILabel()
     private var articleDescription = UILabel()
-    private var descriptionBackground = UIView()
     private var container = UIView()
     private var changePictureQueue = 0
     var ArticleViewModel: ArticleViewModel? {
@@ -36,12 +35,6 @@ class ArticleCell : UITableViewCell {
             }
             title.text = ArticleViewModel?.title
             articleDescription.text = ArticleViewModel?.description
-            if (ArticleViewModel?.description == "") {
-                descriptionBackground.isHidden = true
-            }
-            else {
-                descriptionBackground.isHidden = false
-            }
         }
     }
     
@@ -67,29 +60,16 @@ class ArticleCell : UITableViewCell {
         selectedBackgroundView = view
         backgroundColor = UIColor(white: 1, alpha: 0)
         container.addSubview(image)
-        container.addSubview(title)
-        container.addSubview(descriptionBackground)
-        container.addSubview(articleDescription)
+        addSubview(articleDescription)
         addSubview(container)
-        title.numberOfLines = 2
-        title.lineBreakMode = .byTruncatingTail
-        title.setContentCompressionResistancePriority(.required, for: .vertical)
-        title.textColor = .systemYellow
-        title.translatesAutoresizingMaskIntoConstraints = false
-        title.topAnchor.constraint(equalTo: container.topAnchor, constant: 10).isActive = true
-        title.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10).isActive = true
-        title.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10).isActive = true
-        title.font = UIFont.boldSystemFont(ofSize: 24)
-        title.layer.shadowOpacity = 0.3
-        title.layer.shadowColor = UIColor.black.cgColor
-        title.layer.shadowRadius = 2
+        addSubview(title)
         articleDescription.translatesAutoresizingMaskIntoConstraints = false
-        articleDescription.bottomAnchor.constraint(equalTo: container.bottomAnchor, constant: -10).isActive = true
-        articleDescription.leadingAnchor.constraint(equalTo: container.leadingAnchor, constant: 10).isActive = true
-        articleDescription.trailingAnchor.constraint(equalTo: container.trailingAnchor, constant: -10).isActive = true
+        articleDescription.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5).isActive = true
+        articleDescription.leadingAnchor.constraint(equalTo: container.trailingAnchor, constant: 10).isActive = true
+        articleDescription.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
         articleDescription.numberOfLines = 3
         articleDescription.font = UIFont.systemFont(ofSize: 14)
-        articleDescription.textColor = .black
+        articleDescription.textColor = .red
         image.contentMode = .scaleAspectFill
         image.alpha = 0.8
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -97,26 +77,28 @@ class ArticleCell : UITableViewCell {
         image.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
         image.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
         image.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
-        descriptionBackground.translatesAutoresizingMaskIntoConstraints = false
-        descriptionBackground.bottomAnchor.constraint(equalTo: container.bottomAnchor).isActive = true
-        descriptionBackground.leadingAnchor.constraint(equalTo: container.leadingAnchor).isActive = true
-        descriptionBackground.trailingAnchor.constraint(equalTo: container.trailingAnchor).isActive = true
-        descriptionBackground.heightAnchor.constraint(equalTo: articleDescription.heightAnchor, constant: 15).isActive = true
-        descriptionBackground.backgroundColor = .systemRed.withAlphaComponent(0.7)
-        descriptionBackground.layer.shadowOpacity = 1
-        descriptionBackground.layer.shadowColor = UIColor.systemRed.cgColor
-        descriptionBackground.layer.shadowRadius = 30
-        descriptionBackground.layer.shadowOffset = CGSize(width: 0, height: -20)
         container.translatesAutoresizingMaskIntoConstraints = false
-        container.topAnchor.constraint(equalTo: topAnchor, constant: 15).isActive = true
-        container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15).isActive = true
-        container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25).isActive = true
-        container.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25).isActive = true
-        heightAnchor.constraint(equalToConstant: 300).isActive = true
+        container.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        container.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
+        container.widthAnchor.constraint(equalTo: container.heightAnchor).isActive = true
+        container.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10).isActive = true
+        heightAnchor.constraint(equalToConstant: 110).isActive = true
         container.clipsToBounds = true
         container.layer.cornerRadius = 15
         container.backgroundColor = .black
         container.layer.borderWidth = 2
         container.layer.borderColor = UIColor.systemRed.cgColor
+        title.numberOfLines = 2
+        title.lineBreakMode = .byTruncatingTail
+        title.setContentCompressionResistancePriority(.required, for: .vertical)
+        title.textColor = .systemYellow
+        title.translatesAutoresizingMaskIntoConstraints = false
+        title.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
+        title.leadingAnchor.constraint(equalTo: container.trailingAnchor, constant: 10).isActive = true
+        title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+        title.font = UIFont.boldSystemFont(ofSize: 18)
+        title.layer.shadowOpacity = 0.3
+        title.layer.shadowColor = UIColor.systemRed.cgColor
+        title.layer.shadowRadius = 2
     }
 }

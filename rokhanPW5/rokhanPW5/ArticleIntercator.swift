@@ -26,7 +26,7 @@ class ArticleIntercator : ArticleBuisnessLogic, ArticleDataStore {
             oldLenghtOfArticlesList = articles.count
         }
         didSet {
-            if oldLenghtOfArticlesList == 0 || oldLenghtOfArticlesList > articles.count {
+            if oldLenghtOfArticlesList == 0 || oldLenghtOfArticlesList >= articles.count {
                 articlePresenter?.presentNews(articles: articles)
             }
             else {

@@ -10,6 +10,7 @@ import UIKit
 protocol ArticleRouterLogic
 {
     func routeToWeb(url: URL?)
+    func routeToShareMenu(url: URL?)
 }
 
 protocol ArticleDataPassing
@@ -25,6 +26,16 @@ class ArticleRouter: ArticleRouterLogic, ArticleDataPassing {
         webRouter.vc = webVC
         webRouter.passDataToWeb(url: url)
         vc?.pushControler(vc: webVC)
+    }
+    
+    func routeToShareMenu(url: URL?) {
+        guard let urlIsNotNil = url else { return }
+        let shareVC = UIActivityViewController(
+            activityItems: [
+                urlIsNotNil
+            ],
+            applicationActivities: nil)
+        vc?.pushControler(vc: shareVC)
     }
 }
 

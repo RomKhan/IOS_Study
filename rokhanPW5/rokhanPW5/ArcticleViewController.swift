@@ -58,16 +58,25 @@ class ArcticleViewController: UIViewController, ArticleDisplayLogic {
     }
     
     func updateCells(articles: [ArticleViewModel]) {
-        articleViewModels += articles
         sleep(1)
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            let list = (0..<articles.count).compactMap { [weak self] i in
+                return IndexPath(row: (self?.articleViewModels.count ?? 1) + i, section: 0)
+            }
+            self.articleViewModels += articles
+            self.tableView.beginUpdates()
+            self.tableView.insertRows(at: list, with: .automatic)
+            self.tableView.endUpdates()
             self.activityIndicator.stopAnimating()
         }
     }
     
     func pushControler(vc: UIViewController) {
         navigationController?.present(vc, animated: true, completion: nil)
+    }
+    
+    func hey() {
+        print("he")
     }
 }
 
@@ -79,6 +88,19 @@ extension ArcticleViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         router?.routeToWeb(url: articleViewModels[indexPath.row].articleURL)
+    }
+
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let action = UIContextualAction(style: .destructive,
+                                        title: "Share") { [weak self] (action, view, completionHandler) in
+                                            self?.router?.routeToShareMenu(
+                                                url: self?.articleViewModels[indexPath.row].articleURL
+                                            )
+                                            completionHandler(true)
+                                        }
+        action.backgroundColor = .systemRed
+        return UISwipeActionsConfiguration(actions: [action])
     }
 }
 
@@ -99,18 +121,5 @@ extension ArcticleViewController: UITableViewDataSource {
             cell?.ArticleViewModel = articleViewModels[indexPath.row]
         }
         return cell ?? UITableViewCell()
-    }
-    
-    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let identifier = "\(indexPath.row)" as NSString
-        return UIContextMenuConfiguration(identifier: identifier, previewProvider: .none) { _ in let openAction = UIAction(title: "Open", image:
-                                                                                                                            UIImage(systemName: "bookmark"), attributes:
-                                                                                                                                UIMenuElement.Attributes.destructive) { value in
-            
-        }
-        
-        let menu = UIMenu(title: "", image: nil, children: [openAction])
-        return menu
-        }
     }
 }
