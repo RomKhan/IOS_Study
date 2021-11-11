@@ -12,6 +12,8 @@
 		151DDAD4273AC56300DEF602 /* ArticleConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DDAD3273AC56300DEF602 /* ArticleConfigure.swift */; };
 		151DDAD6273ACB4100DEF602 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 151DDAD5273ACB4100DEF602 /* ArticleCell.swift */; };
 		153FE652273CD59000D73A6C /* error-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 153FE651273CD59000D73A6C /* error-2.png */; };
+		153FE654273CDC9E00D73A6C /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FE653273CDC9E00D73A6C /* WebViewController.swift */; };
+		153FE656273CE6E000D73A6C /* WebRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153FE655273CE6E000D73A6C /* WebRouter.swift */; };
 		1556516D273AAD0500390D54 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1556516C273AAD0500390D54 /* AppDelegate.swift */; };
 		1556516F273AAD0500390D54 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1556516E273AAD0500390D54 /* SceneDelegate.swift */; };
 		15565177273AAD0500390D54 /* rokhanPW5.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 15565175273AAD0500390D54 /* rokhanPW5.xcdatamodeld */; };
@@ -28,6 +30,8 @@
 		151DDAD3273AC56300DEF602 /* ArticleConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleConfigure.swift; sourceTree = "<group>"; };
 		151DDAD5273ACB4100DEF602 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		153FE651273CD59000D73A6C /* error-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "error-2.png"; sourceTree = "<group>"; };
+		153FE653273CDC9E00D73A6C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		153FE655273CE6E000D73A6C /* WebRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebRouter.swift; sourceTree = "<group>"; };
 		15565169273AAD0500390D54 /* rokhanPW5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rokhanPW5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1556516C273AAD0500390D54 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1556516E273AAD0500390D54 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				151DDAD3273AC56300DEF602 /* ArticleConfigure.swift */,
 				151DDAD5273ACB4100DEF602 /* ArticleCell.swift */,
 				153FE651273CD59000D73A6C /* error-2.png */,
+				153FE653273CDC9E00D73A6C /* WebViewController.swift */,
+				153FE655273CE6E000D73A6C /* WebRouter.swift */,
 			);
 			path = rokhanPW5;
 			sourceTree = "<group>";
@@ -164,6 +170,8 @@
 				15565184273AAF3300390D54 /* ArcticleViewController.swift in Sources */,
 				15565188273AB05700390D54 /* ArticlePresenter.swift in Sources */,
 				151DDAD2273AC43100DEF602 /* Models.swift in Sources */,
+				153FE656273CE6E000D73A6C /* WebRouter.swift in Sources */,
+				153FE654273CDC9E00D73A6C /* WebViewController.swift in Sources */,
 				1556518A273AB06300390D54 /* ArticleWorker.swift in Sources */,
 				1556516F273AAD0500390D54 /* SceneDelegate.swift in Sources */,
 				151DDAD4273AC56300DEF602 /* ArticleConfigure.swift in Sources */,

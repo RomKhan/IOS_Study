@@ -21,5 +21,6 @@ class ArticleConfigure {
         presenter.articleVC = vc
         vc.interactor = interactor
         vc.router = router
+        router.vc = vc
     }
 }

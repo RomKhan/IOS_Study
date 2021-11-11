@@ -39,4 +39,5 @@ struct ArticleViewModel {
     var title: String?
     var description: String?
     var imageURL: URL?
+    var articleURL: URL?
 }

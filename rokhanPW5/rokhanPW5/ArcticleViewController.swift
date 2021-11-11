@@ -9,6 +9,7 @@ import UIKit
 
 protocol ArticleDisplayLogic {
     func updateCells(articles: [ArticleViewModel])
+    func pushControler(vc: UIViewController)
 }
 
 class ArcticleViewController: UIViewController, ArticleDisplayLogic {
@@ -64,12 +65,20 @@ class ArcticleViewController: UIViewController, ArticleDisplayLogic {
             self.activityIndicator.stopAnimating()
         }
     }
+    
+    func pushControler(vc: UIViewController) {
+        navigationController?.present(vc, animated: true, completion: nil)
+    }
 }
 
 extension ArcticleViewController: UITableViewDelegate {
     /// Количетсво секций.
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        router?.routeToWeb(url: articleViewModels[indexPath.row].articleURL)
     }
 }
 
@@ -92,4 +101,16 @@ extension ArcticleViewController: UITableViewDataSource {
         return cell ?? UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let identifier = "\(indexPath.row)" as NSString
+        return UIContextMenuConfiguration(identifier: identifier, previewProvider: .none) { _ in let openAction = UIAction(title: "Open", image:
+                                                                                                                            UIImage(systemName: "bookmark"), attributes:
+                                                                                                                                UIMenuElement.Attributes.destructive) { value in
+            
+        }
+        
+        let menu = UIMenu(title: "", image: nil, children: [openAction])
+        return menu
+        }
+    }
 }

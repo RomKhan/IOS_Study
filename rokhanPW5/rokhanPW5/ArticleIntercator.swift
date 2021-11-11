@@ -62,4 +62,6 @@ class ArticleIntercator : ArticleBuisnessLogic, ArticleDataStore {
                             self?.articlePresenter?.errorPresentNews()
                           })
     }
+    
+    
 }

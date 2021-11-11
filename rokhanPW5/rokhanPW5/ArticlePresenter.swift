@@ -20,7 +20,8 @@ class ArticlePresenter : ArticlePresenterLogic {
         let articlesModels = articles.compactMap { article -> ArticleViewModel in
             return ArticleViewModel(title: article.title,
                                     description: article.announce,
-                                    imageURL: article.img?.url)
+                                    imageURL: article.img?.url,
+                                    articleURL: article.articleUrl)
         }
         return articlesModels
     }
