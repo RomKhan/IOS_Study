@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MyLogger1
 
 class ViewController: UIViewController {
     var frameworkButton = UIButton()
@@ -51,7 +52,7 @@ class ViewController: UIViewController {
     }
     
     @objc func frameworkButtonClick(sender: Any) {
-        
+        MyLogger1.log("hello, world")
     }
     
     @objc func packageButtonClick(sender: Any) {
