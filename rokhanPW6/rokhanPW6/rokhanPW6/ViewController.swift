@@ -7,6 +7,7 @@
 
 import UIKit
 import MyLogger1
+import MyLogger2
 
 class ViewController: UIViewController {
     var frameworkButton = UIButton()
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
     }
     
     @objc func packageButtonClick(sender: Any) {
-        
+        MyLogger2.log("hello, world")
     }
     
     @objc func podButtonClick(sender: Any) {
