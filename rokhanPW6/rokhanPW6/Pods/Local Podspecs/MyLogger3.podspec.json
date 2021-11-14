@@ -1,9 +1,9 @@
 {
-  "name": "${POD_NAME}",
+  "name": "MyLogger3",
   "version": "0.1.0",
-  "summary": "A short description of ${POD_NAME}.",
+  "summary": "A short description of MyLogger3.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/${USER_NAME}/${POD_NAME}",
+  "homepage": "https://github.com/${USER_NAME}/MyLogger3",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -18,5 +18,5 @@
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "${POD_NAME}/Classes/**/*"
+  "source_files": "MyLogger3/Classes/**/*"
 }

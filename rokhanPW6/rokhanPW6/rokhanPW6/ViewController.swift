@@ -8,6 +8,7 @@
 import UIKit
 import MyLogger1
 import MyLogger2
+import MyLogger3
 
 class ViewController: UIViewController {
     var frameworkButton = UIButton()
@@ -61,7 +62,7 @@ class ViewController: UIViewController {
     }
     
     @objc func podButtonClick(sender: Any) {
-        
+        MyLogger3.log("hello, world")
     }
     
     @objc func charthageClick(sender: Any) {

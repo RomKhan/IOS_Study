@@ -6,5 +6,5 @@ target 'rokhanPW6' do
   use_frameworks!
 
   # Pods for rokhanPW6
-  pod 'NAME', :path => '../MyLogger3/'
+  pod 'MyLogger3', :path => '../MyLogger3/'
 end
