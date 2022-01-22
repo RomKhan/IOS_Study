@@ -17,6 +17,8 @@
 		152A435A279C496C00C1D33C /* NavigatorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A4359279C496C00C1D33C /* NavigatorRouter.swift */; };
 		152A435C279C497800C1D33C /* NavigatorWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A435B279C497800C1D33C /* NavigatorWorker.swift */; };
 		152A435E279C4C6000C1D33C /* NavigatorConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A435D279C4C6000C1D33C /* NavigatorConfigure.swift */; };
+		152A4360279C638200C1D33C /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A435F279C638200C1D33C /* CustomButtonView.swift */; };
+		152A4362279C78F300C1D33C /* LovationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A4361279C78F300C1D33C /* LovationFormView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		152A4359279C496C00C1D33C /* NavigatorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorRouter.swift; sourceTree = "<group>"; };
 		152A435B279C497800C1D33C /* NavigatorWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorWorker.swift; sourceTree = "<group>"; };
 		152A435D279C4C6000C1D33C /* NavigatorConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorConfigure.swift; sourceTree = "<group>"; };
+		152A435F279C638200C1D33C /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
+		152A4361279C78F300C1D33C /* LovationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LovationFormView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,8 @@
 				152A4359279C496C00C1D33C /* NavigatorRouter.swift */,
 				152A435B279C497800C1D33C /* NavigatorWorker.swift */,
 				152A435D279C4C6000C1D33C /* NavigatorConfigure.swift */,
+				152A435F279C638200C1D33C /* CustomButtonView.swift */,
+				152A4361279C78F300C1D33C /* LovationFormView.swift */,
 			);
 			path = MapKitNavigatorScene;
 			sourceTree = "<group>";
@@ -160,10 +166,12 @@
 				152A435A279C496C00C1D33C /* NavigatorRouter.swift in Sources */,
 				152A433F279C456E00C1D33C /* AppDelegate.swift in Sources */,
 				152A4358279C495D00C1D33C /* NavigatorPresenter.swift in Sources */,
+				152A4360279C638200C1D33C /* CustomButtonView.swift in Sources */,
 				152A4356279C492000C1D33C /* NavigatorInteractor.swift in Sources */,
 				152A435C279C497800C1D33C /* NavigatorWorker.swift in Sources */,
 				152A435E279C4C6000C1D33C /* NavigatorConfigure.swift in Sources */,
 				152A4354279C490D00C1D33C /* NavigatorViewController.swift in Sources */,
+				152A4362279C78F300C1D33C /* LovationFormView.swift in Sources */,
 				152A4341279C456E00C1D33C /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
