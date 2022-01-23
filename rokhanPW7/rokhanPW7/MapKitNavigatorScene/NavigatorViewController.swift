@@ -53,6 +53,17 @@ class NavigatorViewController : UIViewController, NavigatorViewControllerInputLo
     let startLocation = LocationFormView("From")
     let endLocation = LocationFormView("To")
     
+    let goButton : CustomButtonView = {
+        let goButton = CustomButtonView(color: .orange.withAlphaComponent(0.8), text: "Go")
+        goButton.addTarget(self, action: #selector(goButtonWasPressed), for: .touchDown)
+        return goButton
+    }()
+    
+    let clearButton : CustomButtonView = {
+        let clearButton = CustomButtonView(color: .orange.withAlphaComponent(0.8), text: "Clear")
+        clearButton.addTarget(self, action: #selector(clearButtonWasPressed), for: .touchDown)
+        return clearButton
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +80,8 @@ class NavigatorViewController : UIViewController, NavigatorViewControllerInputLo
         map.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         map.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         
-        buttonsStack.addArrangedSubview(CustomButtonView(color: .orange.withAlphaComponent(0.8), text: "Go"))
-        buttonsStack.addArrangedSubview(CustomButtonView(color: .orange.withAlphaComponent(0.8), text: "Clear"))
+        buttonsStack.addArrangedSubview(goButton)
+        buttonsStack.addArrangedSubview(clearButton)
         view.addSubview(buttonsStack)
         buttonsStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         buttonsStack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -88,17 +99,54 @@ class NavigatorViewController : UIViewController, NavigatorViewControllerInputLo
         ).isActive = true
         textStack.addArrangedSubview(startLocation)
         textStack.addArrangedSubview(endLocation)
-
+        startLocation.delegate = self
+        endLocation.delegate = self
+    }
+    
+    @objc func clearButtonWasPressed(_ sender: UIButton) {
+        sender.isEnabled = false
+        goButton.isEnabled = false
+        startLocation.text = ""
+        endLocation.text = ""
+    }
+    
+    @objc func goButtonWasPressed(_ sender: UIButton) {
+        sender.isEnabled = false
     }
 }
 
-extension UIViewController {
+extension NavigatorViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.resignFirstResponder()
+        if startLocation.text != "" && endLocation.text != "" {
+            goButtonWasPressed(goButton)
+        }
+        return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if startLocation.text != "" && endLocation.text != "" {
+            goButton.isEnabled = true
+            clearButton.isEnabled = true
+        }
+        else if startLocation.text != "" || endLocation.text != "" {
+            clearButton.isEnabled = true
+            goButton.isEnabled = false
+        }
+        else {
+            clearButton.isEnabled = false
+            goButton.isEnabled = false
+        }
+    }
+}
+
+extension NavigatorViewController {
     /// Call this once to dismiss open keyboards by tapping anywhere in the view controller
     func setupHideKeyboardOnTap() {
         self.view.addGestureRecognizer(self.endEditingRecognizer())
         self.navigationController?.navigationBar.addGestureRecognizer(self.endEditingRecognizer())
     }
-
+    
     /// Dismisses the keyboard from self.view
     private func endEditingRecognizer() -> UIGestureRecognizer {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))

@@ -24,13 +24,5 @@ class LocationFormView : UITextField {
         clearButtonMode = UITextField.ViewMode.whileEditing
         contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         translatesAutoresizingMaskIntoConstraints = false
-        delegate = self
-    }
-}
-
-extension LocationFormView: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.resignFirstResponder()
-        return true
     }
 }

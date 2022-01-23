@@ -14,10 +14,10 @@ class CustomButtonView: UIButton {
         backgroundColor = color
         self.setTitle(text, for: .normal)
         self.layer.cornerRadius = 20
+        isEnabled = false
+        setTitleColor(.gray, for: .disabled)
         translatesAutoresizingMaskIntoConstraints = false
         widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 12).isActive = true
         heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height / 12).isActive = true
     }
-    
-    
 }
