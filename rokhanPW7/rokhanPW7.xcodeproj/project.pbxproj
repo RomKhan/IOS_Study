@@ -14,8 +14,6 @@
 		152A4354279C490D00C1D33C /* NavigatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A4353279C490D00C1D33C /* NavigatorViewController.swift */; };
 		152A4356279C492000C1D33C /* NavigatorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A4355279C492000C1D33C /* NavigatorInteractor.swift */; };
 		152A4358279C495D00C1D33C /* NavigatorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A4357279C495D00C1D33C /* NavigatorPresenter.swift */; };
-		152A435A279C496C00C1D33C /* NavigatorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A4359279C496C00C1D33C /* NavigatorRouter.swift */; };
-		152A435C279C497800C1D33C /* NavigatorWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A435B279C497800C1D33C /* NavigatorWorker.swift */; };
 		152A435E279C4C6000C1D33C /* NavigatorConfigure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A435D279C4C6000C1D33C /* NavigatorConfigure.swift */; };
 		152A4360279C638200C1D33C /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A435F279C638200C1D33C /* CustomButtonView.swift */; };
 		152A4362279C78F300C1D33C /* LocationFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 152A4361279C78F300C1D33C /* LocationFormView.swift */; };
@@ -31,8 +29,6 @@
 		152A4353279C490D00C1D33C /* NavigatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorViewController.swift; sourceTree = "<group>"; };
 		152A4355279C492000C1D33C /* NavigatorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorInteractor.swift; sourceTree = "<group>"; };
 		152A4357279C495D00C1D33C /* NavigatorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorPresenter.swift; sourceTree = "<group>"; };
-		152A4359279C496C00C1D33C /* NavigatorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorRouter.swift; sourceTree = "<group>"; };
-		152A435B279C497800C1D33C /* NavigatorWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorWorker.swift; sourceTree = "<group>"; };
 		152A435D279C4C6000C1D33C /* NavigatorConfigure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigatorConfigure.swift; sourceTree = "<group>"; };
 		152A435F279C638200C1D33C /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
 		152A4361279C78F300C1D33C /* LocationFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFormView.swift; sourceTree = "<group>"; };
@@ -84,8 +80,6 @@
 				152A4353279C490D00C1D33C /* NavigatorViewController.swift */,
 				152A4355279C492000C1D33C /* NavigatorInteractor.swift */,
 				152A4357279C495D00C1D33C /* NavigatorPresenter.swift */,
-				152A4359279C496C00C1D33C /* NavigatorRouter.swift */,
-				152A435B279C497800C1D33C /* NavigatorWorker.swift */,
 				152A435D279C4C6000C1D33C /* NavigatorConfigure.swift */,
 				152A435F279C638200C1D33C /* CustomButtonView.swift */,
 				152A4361279C78F300C1D33C /* LocationFormView.swift */,
@@ -163,12 +157,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				152A435A279C496C00C1D33C /* NavigatorRouter.swift in Sources */,
 				152A433F279C456E00C1D33C /* AppDelegate.swift in Sources */,
 				152A4358279C495D00C1D33C /* NavigatorPresenter.swift in Sources */,
 				152A4360279C638200C1D33C /* CustomButtonView.swift in Sources */,
 				152A4356279C492000C1D33C /* NavigatorInteractor.swift in Sources */,
-				152A435C279C497800C1D33C /* NavigatorWorker.swift in Sources */,
 				152A435E279C4C6000C1D33C /* NavigatorConfigure.swift in Sources */,
 				152A4354279C490D00C1D33C /* NavigatorViewController.swift in Sources */,
 				152A4362279C78F300C1D33C /* LocationFormView.swift in Sources */,
@@ -241,7 +233,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -296,7 +288,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

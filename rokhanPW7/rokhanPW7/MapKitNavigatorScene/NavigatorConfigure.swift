@@ -17,13 +17,10 @@ class NavigatorConfigure {
         let viewControler = NavigatorViewController()
         let interactor = NavigatorInteractor()
         let presenter = NavigatorPresenter()
-        let router = NavigatorRouter()
         
         interactor.presenter = presenter
         presenter.viewController = viewControler
         viewControler.interactor = interactor
-        viewControler.router = router
-        router.navigatorViewController = viewControler
         
         return viewControler
     }

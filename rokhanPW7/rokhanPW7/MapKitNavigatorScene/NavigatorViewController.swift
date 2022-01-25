@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CoreLocation
 import MapKit
 
 protocol NavigatorViewControllerInputLogic : NavigatorPresenterOutputLogic {
@@ -14,12 +13,13 @@ protocol NavigatorViewControllerInputLogic : NavigatorPresenterOutputLogic {
 }
 
 protocol NavigatorViewControllerOutputLogic {
-    
+    func fetchCoords(start: String?, end: String?)
 }
 
 class NavigatorViewController : UIViewController, NavigatorViewControllerInputLogic {
     var interactor: NavigatorViewControllerOutputLogic?
-    var router: NavigatorRouterLogic?
+    var destination: MKPlacemark?
+    var source: MKPlacemark?
     
     private let map: MKMapView = {
         let mapView = MKMapView()
@@ -79,6 +79,7 @@ class NavigatorViewController : UIViewController, NavigatorViewControllerInputLo
         map.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
         map.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         map.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        map.delegate = self
         
         buttonsStack.addArrangedSubview(goButton)
         buttonsStack.addArrangedSubview(clearButton)
@@ -104,6 +105,8 @@ class NavigatorViewController : UIViewController, NavigatorViewControllerInputLo
     }
     
     @objc func clearButtonWasPressed(_ sender: UIButton) {
+        map.removeAnnotations(map.annotations)
+        map.removeOverlays(map.overlays)
         sender.isEnabled = false
         goButton.isEnabled = false
         startLocation.text = ""
@@ -112,6 +115,40 @@ class NavigatorViewController : UIViewController, NavigatorViewControllerInputLo
     
     @objc func goButtonWasPressed(_ sender: UIButton) {
         sender.isEnabled = false
+        interactor?.fetchCoords(start: startLocation.text, end: endLocation.text)
+    }
+    
+    func drawPath(directions: MKDirections?, anotations: [MKPointAnnotation]?) {
+        goButton.isEnabled = true
+        guard let directions = directions, let anotations = anotations
+        else { return }
+        
+        map.removeAnnotations(map.annotations)
+        map.removeOverlays(map.overlays)
+        directions.calculate { [unowned self] response, error in
+            guard let unwrappedResponse = response else { return }
+            
+            self.map.showAnnotations(anotations, animated: true)
+            for route in unwrappedResponse.routes {
+                self.map.addOverlay(route.polyline)
+                self.map.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
+            }
+        }
+    }
+}
+
+extension NavigatorViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        var renderer: MKPolylineRenderer? = nil
+        if let anOverlay = overlay as? MKPolyline {
+            renderer = MKPolylineRenderer(polyline: anOverlay)
+        }
+        renderer?.strokeColor = UIColor.systemOrange.withAlphaComponent(0.8)
+        renderer?.lineWidth = 5.0
+        if let aRenderer = renderer {
+            return aRenderer
+        }
+        return MKOverlayRenderer()
     }
 }
 
@@ -141,13 +178,11 @@ extension NavigatorViewController: UITextFieldDelegate {
 }
 
 extension NavigatorViewController {
-    /// Call this once to dismiss open keyboards by tapping anywhere in the view controller
     func setupHideKeyboardOnTap() {
         self.view.addGestureRecognizer(self.endEditingRecognizer())
         self.navigationController?.navigationBar.addGestureRecognizer(self.endEditingRecognizer())
     }
     
-    /// Dismisses the keyboard from self.view
     private func endEditingRecognizer() -> UIGestureRecognizer {
         let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing(_:)))
         tap.cancelsTouchesInView = false
